@@ -42,16 +42,35 @@ public class OnlineStoreController {
     }
 
     @PostMapping("/login")
-    public String login1(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
-                         HttpSession session , Model model) {
+    public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
+                        HttpSession session, Model model) {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-        if(storeService.findStoreByEmail(user.getEmail()).isPresent()){
-            return "redirect:/";
+
+        if (storeService.findStoreByEmail(user.getEmail()).isPresent()) {
+            if (storeService.findStoreByEmail(user.getEmail()).get().getPassword().equals(user.getPassword())) {
+                session.setAttribute("currentUser", user);
+                return "redirect:/"; //should return to homepage or profile page
+            } else {
+                model.addAttribute("message", "Wrong password");
+                return "login";
+            }
         }
-        else{
-            model.addAttribute("message" , "No such user");
+        /**
+         * Uncomment after CustomerService, InMemoryCustomerService and Customer classes added
+         */
+//        else if (customerService.findCustomerByEmail(user.getEmail()).isPresent()) {
+//            if (customerService.findCustomerByEmail(user.getEmail()).get().getPassword().equals(user.getPassword())) {
+//                session.setAttribute("currentUser", user);
+//                return "redirect:/"; //should return to homepage or profile page
+//            } else {
+//                model.addAttribute("message", "Wrong password");
+//                return "login";
+//            }
+//        }
+        else {
+            model.addAttribute("message", "No such user");
             return "login";
         }
     }
