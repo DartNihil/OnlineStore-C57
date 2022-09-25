@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
-public class OnlinerController {
+public class OnlineStoreController {
     @Autowired
     private StoreService storeService;
 
