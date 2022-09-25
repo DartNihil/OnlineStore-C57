@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class StoreService {
     @Autowired
-    @Qualifier("InMemoryStoreStorage")
+    @Qualifier("inMemoryStoreStorage")
     private Storable<Store, Long> storeStorage;
 
     public Store saveStore(Store store) {
         storeStorage.save(store);
+        System.out.println(store);
         return store;
     }
 }

@@ -1,24 +1,38 @@
 package by.tms.entity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class Store extends Entity {
+    @NotBlank
+    @Email
     private String email;
+    @NotBlank
     private String password;
+    @NotBlank
     private String storeName;
-    private String phoneNumber;
+    @NotBlank
+    private String storePhoneNumber;
+    @NotBlank
     private String storeAddress;
+    @NotBlank
+    private String storeOpeningHours;
+    @NotBlank
     private String payerAccountNumber;
+    @NotBlank
     private String registrationCertificate;
 
     public Store() {
     }
 
-    public Store(String email, String password, String storeName, String phoneNumber,
-                 String storeAddress, String payerAccountNumber, String registrationCertificate) {
+    public Store(String email, String password, String storeName, String storePhoneNumber, String storeAddress,
+                 String storeOpeningHours, String payerAccountNumber, String registrationCertificate) {
         this.email = email;
         this.password = password;
         this.storeName = storeName;
-        this.phoneNumber = phoneNumber;
+        this.storePhoneNumber = storePhoneNumber;
         this.storeAddress = storeAddress;
+        this.storeOpeningHours = storeOpeningHours;
         this.payerAccountNumber = payerAccountNumber;
         this.registrationCertificate = registrationCertificate;
     }
@@ -47,12 +61,20 @@ public class Store extends Entity {
         this.storeName = storeName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getStorePhoneNumber() {
+        return storePhoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setStorePhoneNumber(String storePhoneNumber) {
+        this.storePhoneNumber = storePhoneNumber;
+    }
+
+    public String getStoreOpeningHours() {
+        return storeOpeningHours;
+    }
+
+    public void setStoreOpeningHours(String storeOpeningHours) {
+        this.storeOpeningHours = storeOpeningHours;
     }
 
     public String getStoreAddress() {
@@ -78,7 +100,22 @@ public class Store extends Entity {
     public void setRegistrationCertificate(String registrationCertificate) {
         this.registrationCertificate = registrationCertificate;
     }
-//    public StoreBuilder builder(){
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", storeName='" + storeName + '\'' +
+                ", storePhoneNumber='" + storePhoneNumber + '\'' +
+                ", storeAddress='" + storeAddress + '\'' +
+                ", storeOpeningHours='" + storeOpeningHours + '\'' +
+                ", payerAccountNumber='" + payerAccountNumber + '\'' +
+                ", registrationCertificate='" + registrationCertificate + '\'' +
+                ", id=" + id +
+                '}';
+    }
+    //    public StoreBuilder builder(){
 //        return new StoreBuilder();
 //    }
 //     public static class StoreBuilder {

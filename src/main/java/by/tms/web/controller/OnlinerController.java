@@ -27,7 +27,7 @@ public class OnlinerController {
     @PostMapping("/storeRegistration")
     public String registration(@Valid @ModelAttribute("newStore") Store store, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "storeRegistration";
         }
         storeService.saveStore(store);
         return "redirect:/";

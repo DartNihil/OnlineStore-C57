@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Component
+@Component("inMemoryStoreStorage")
 public class InMemoryStoreStorage implements Storable<Store, Long> {
     @Autowired
     private List<Store> storeList;
