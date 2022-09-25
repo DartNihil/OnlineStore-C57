@@ -21,28 +21,18 @@ public class Store extends User {
     @Size(message = "Store opening hours length must be 2 - 60", min = 2, max = 60)
     private String storeOpeningHours;
     private List<String> productCategories;
-    @NotBlank(message = "Field must not be empty")
-    @Size(message = "Payer account number length must be 9!", min = 9, max = 9)
-    @Pattern(message = "Payer account number is incorrect!", regexp = "[\\d]+")
-    private String payerAccountNumber;
-    @NotBlank(message = "Field must not be empty")
-    @Size(message = "Registration certificate length must be 2 - 60", min = 2, max = 60)
-    private String registrationCertificate;
     private List<String> paymentMethods;
 
     public Store() {
     }
 
     public Store(String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours,
-                 List<String> productCategories, String payerAccountNumber, String registrationCertificate,
-                 List<String> paymentMethods) {
+                 List<String> productCategories, List<String> paymentMethods) {
         this.storeName = storeName;
         this.storePhoneNumber = storePhoneNumber;
         this.storeAddress = storeAddress;
         this.storeOpeningHours = storeOpeningHours;
         this.productCategories = productCategories;
-        this.payerAccountNumber = payerAccountNumber;
-        this.registrationCertificate = registrationCertificate;
         this.paymentMethods = paymentMethods;
     }
 
@@ -94,22 +84,6 @@ public class Store extends User {
         this.storeAddress = storeAddress;
     }
 
-    public String getPayerAccountNumber() {
-        return payerAccountNumber;
-    }
-
-    public void setPayerAccountNumber(String payerAccountNumber) {
-        this.payerAccountNumber = payerAccountNumber;
-    }
-
-    public String getRegistrationCertificate() {
-        return registrationCertificate;
-    }
-
-    public void setRegistrationCertificate(String registrationCertificate) {
-        this.registrationCertificate = registrationCertificate;
-    }
-
     public List<String> getPaymentMethods() {
         return paymentMethods;
     }
@@ -134,8 +108,6 @@ public class Store extends User {
                 ", storeAddress='" + storeAddress + '\'' +
                 ", storeOpeningHours='" + storeOpeningHours + '\'' +
                 ", productCategories=" + productCategories +
-                ", payerAccountNumber='" + payerAccountNumber + '\'' +
-                ", registrationCertificate='" + registrationCertificate + '\'' +
                 ", paymentMethods=" + paymentMethods +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

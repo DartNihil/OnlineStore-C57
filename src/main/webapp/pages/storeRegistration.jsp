@@ -39,14 +39,6 @@
     <s:input path="storeOpeningHours" size="30" placeholder="Store opening hours"/>
     <br>
     <s:errors path="storeOpeningHours"/>
-    <p>Enter store payer account number:</p>
-    <s:input path="payerAccountNumber" size="30" placeholder="Store payer account number"/>
-    <br>
-    <s:errors path="payerAccountNumber"/>
-    <p>Enter store registration certificate:</p>
-    <s:input path="registrationCertificate" size="30" placeholder="Store registration certificate"/>
-    <br>
-    <s:errors path="registrationCertificate"/>
     <br>
     <p>Choose product categories you want to sell:</p>
     <s:checkbox path="productCategories" value="SmartPhone"/>SmartPhone<br/>
