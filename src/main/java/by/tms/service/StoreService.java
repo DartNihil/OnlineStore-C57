@@ -15,7 +15,6 @@ public class StoreService {
 
     public Store saveStore(Store store) {
         storeStorage.save(store);
-        System.out.println(store);
         return store;
     }
 }

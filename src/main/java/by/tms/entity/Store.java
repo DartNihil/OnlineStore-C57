@@ -2,24 +2,36 @@ package by.tms.entity;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class Store extends Entity {
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
     @Email
     private String email;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Password length must be 5-10 characters!", min = 5, max = 10)
+    @Pattern(message = "Password must consist of numbers and latin letters!", regexp = "[\\w\\d]+")
     private String password;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Store name length must be 2 - 16", min = 2, max = 16)
     private String storeName;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Phone number has incorrect length!", min = 13, max = 13)
+    @Pattern(message = "Phone number is incorrect!", regexp = "\\+375[\\d]+")
     private String storePhoneNumber;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Store address length must be 2 - 150", min = 2, max = 150)
     private String storeAddress;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Store opening hours length must be 2 - 60", min = 2, max = 60)
     private String storeOpeningHours;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Payer account number has incorrect length!", min = 9, max = 9)
+    @Pattern(message = "Payer account number is incorrect!", regexp = "[\\d]+")
     private String payerAccountNumber;
-    @NotBlank
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Registration certificate length must be 2 - 60", min = 2, max = 60)
     private String registrationCertificate;
 
     public Store() {
@@ -104,7 +116,8 @@ public class Store extends Entity {
     @Override
     public String toString() {
         return "Store{" +
-                "email='" + email + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", storeName='" + storeName + '\'' +
                 ", storePhoneNumber='" + storePhoneNumber + '\'' +
@@ -112,55 +125,6 @@ public class Store extends Entity {
                 ", storeOpeningHours='" + storeOpeningHours + '\'' +
                 ", payerAccountNumber='" + payerAccountNumber + '\'' +
                 ", registrationCertificate='" + registrationCertificate + '\'' +
-                ", id=" + id +
                 '}';
     }
-    //    public StoreBuilder builder(){
-//        return new StoreBuilder();
-//    }
-//     public static class StoreBuilder {
-//         private String email;
-//         private String password;
-//         private String storeName;
-//         private String phoneNumber;
-//         private String storeAddress;
-//         private String payerAccountNumber;
-//         private String registrationCertificate;
-//
-//         public StoreBuilder() {
-//         }
-//         public StoreBuilder email(String email) {
-//             this.email = email;
-//             return this;
-//         }
-//         public StoreBuilder password(String password) {
-//             this.password = password;
-//             return this;
-//         }
-//         public StoreBuilder storeName(String storeName) {
-//             this.storeName = storeName;
-//             return this;
-//         }
-//         public StoreBuilder phoneNumber(String phoneNumber) {
-//             this.phoneNumber = phoneNumber;
-//             return this;
-//         }
-//         public StoreBuilder storeAddress(String storeAddress) {
-//             this.storeAddress = storeAddress;
-//             return this;
-//         }
-//         public StoreBuilder payerAccountNumber(String payerAccountNumber) {
-//             this.payerAccountNumber = payerAccountNumber;
-//             return this;
-//         }
-//         public StoreBuilder registrationCertificate(String registrationCertificate) {
-//             this.registrationCertificate = registrationCertificate;
-//             return this;
-//         }
-//         public Store build() {
-//             return new Store(this.email, this.password, this.storeName, this.phoneNumber,
-//                     this.storeAddress, this.payerAccountNumber, this.registrationCertificate);
-//         }
-//
-//     }
 }
