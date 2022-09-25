@@ -1,6 +1,7 @@
 package by.tms.web.controller;
 
 
+import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
 import by.tms.service.StoreService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -34,11 +36,14 @@ public class OnlineStoreController {
         return "redirect:/";
     }
     @GetMapping("/login")
-    public String login(@ModelAttribute("user") User user){
+    public String login(@ModelAttribute("customer") Customer customer){
         return "login";
     }
     @PostMapping("/login")
-    public String login1(){
-        return "";
+    public String login1(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult , HttpSession session){
+        if(bindingResult.hasErrors()){
+            return "login";
+        }
+        return "redirect:/";
     }
 }

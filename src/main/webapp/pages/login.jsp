@@ -10,10 +10,18 @@
 <body>
 <h2>Login into OnlinerStore</h2>
 <br>
-<s:form action="/login" method="post">
-    <s:input path="email" size="50" placeholder="e-mail"/>
+<s:form action="/login" method="post" modelAttribute="customer">
+    <s:input path="name" size="50" placeholder="Name"/>
+    <br>
+    <s:errors path="name"/>
+    <br>
+    <s:input path="email" size="50" placeholder="Email"/>
      <br>
-    <s:input path="password" size="50" placeholder ="password"/>
+    <s:errors path="email"/>
+    <br>
+    <s:input path="password" size="50" placeholder ="Password"/>
+    <br>
+    <s:errors path="password"/>
     <br>
     <s:button>Login</s:button>
 
