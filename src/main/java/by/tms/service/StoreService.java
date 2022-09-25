@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class StoreService {
     @Autowired
@@ -15,5 +17,8 @@ public class StoreService {
     public Store saveStore(Store store) {
         storeStorage.save(store);
         return store;
+    }
+    public Optional<Store> findStoreByEmail(String email){
+        return storeStorage.findEntity(email);
     }
 }

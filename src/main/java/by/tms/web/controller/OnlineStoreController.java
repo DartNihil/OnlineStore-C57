@@ -1,12 +1,12 @@
 package by.tms.web.controller;
 
 
-import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,15 +35,24 @@ public class OnlineStoreController {
         storeService.saveStore(store);
         return "redirect:/";
     }
+
     @GetMapping("/login")
-    public String login(@ModelAttribute("customer") Customer customer){
+    public String login(@ModelAttribute("user") User user) {
         return "login";
     }
+
     @PostMapping("/login")
-    public String login1(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult , HttpSession session){
-        if(bindingResult.hasErrors()){
+    public String login1(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
+                         HttpSession session , Model model) {
+        if (bindingResult.hasErrors()) {
             return "login";
         }
-        return "redirect:/";
+        if(storeService.findStoreByEmail(user.getEmail()).isPresent()){
+            return "redirect:/";
+        }
+        else{
+            model.addAttribute("message" , "No such user");
+            return "login";
+        }
     }
 }
