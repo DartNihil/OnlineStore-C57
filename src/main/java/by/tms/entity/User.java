@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public abstract class User extends Entity {
+public class User extends Entity {
     @NotBlank(message = "Field must not be empty")
     @Email
     String email;
