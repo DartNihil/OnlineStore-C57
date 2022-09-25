@@ -12,7 +12,7 @@
     <title>Store Registration</title>
 </head>
 <body>
-<h2>Register your store in OnlinerStore!</h2>
+<h2>Register your store in OnlineStore!</h2>
 <br>
 <s:form action="/storeRegistration" method="post" modelAttribute="newStore">
     <p>Enter your e-mail:</p>
@@ -47,6 +47,18 @@
     <s:input path="registrationCertificate" size="30" placeholder="Store registration certificate"/>
     <br>
     <s:errors path="registrationCertificate"/>
+    <br>
+    <p>Choose product categories you want to sell:</p>
+    <s:checkbox path="productCategories" value="SmartPhone"/>SmartPhone<br/>
+    <s:checkbox path="productCategories" value="Notebook"/>Notebook<br/>
+    <s:checkbox path="productCategories" value="ElectronicBook"/>ElectronicBook<br/>
+    <s:checkbox path="productCategories" value="SmartWatch"/>SmartWatch<br/>
+    <s:checkbox path="productCategories" value="Tablet"/>Tablet<br/>
+    <br>
+    <p>Choose possible payment methods:</p>
+    <s:checkbox path="paymentMethods" value="OnlinePay"/>Online Pay<br/>
+    <s:checkbox path="paymentMethods" value="CardPay"/>Card Pay<br/>
+    <s:checkbox path="paymentMethods" value="CashPay"/>Cash Pay<br/>
     <br>
     <s:button>Submit</s:button>
 </s:form>

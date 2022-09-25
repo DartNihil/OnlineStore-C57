@@ -3,6 +3,8 @@ package by.tms.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Store extends User {
     @NotBlank(message = "Field must not be empty")
@@ -18,8 +20,7 @@ public class Store extends User {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Store opening hours length must be 2 - 60", min = 2, max = 60)
     private String storeOpeningHours;
-
-
+    private List<String> productCategories;
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Payer account number length must be 9!", min = 9, max = 9)
     @Pattern(message = "Payer account number is incorrect!", regexp = "[\\d]+")
@@ -27,20 +28,22 @@ public class Store extends User {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Registration certificate length must be 2 - 60", min = 2, max = 60)
     private String registrationCertificate;
+    private List<String> paymentMethods;
 
     public Store() {
     }
 
-    public Store(String email, String password, String storeName, String storePhoneNumber, String storeAddress,
-                 String storeOpeningHours, String payerAccountNumber, String registrationCertificate) {
-        this.email = email;
-        this.password = password;
+    public Store(String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours,
+                 List<String> productCategories, String payerAccountNumber, String registrationCertificate,
+                 List<String> paymentMethods) {
         this.storeName = storeName;
         this.storePhoneNumber = storePhoneNumber;
         this.storeAddress = storeAddress;
         this.storeOpeningHours = storeOpeningHours;
+        this.productCategories = productCategories;
         this.payerAccountNumber = payerAccountNumber;
         this.registrationCertificate = registrationCertificate;
+        this.paymentMethods = paymentMethods;
     }
 
     public String getEmail() {
@@ -107,18 +110,36 @@ public class Store extends User {
         this.registrationCertificate = registrationCertificate;
     }
 
+    public List<String> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public void setPaymentMethods(List<String> paymentMethods) {
+        this.paymentMethods = paymentMethods;
+    }
+
+    public List<String> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(List<String> productCategories) {
+        this.productCategories = productCategories;
+    }
+
     @Override
     public String toString() {
         return "Store{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", storeName='" + storeName + '\'' +
+                "storeName='" + storeName + '\'' +
                 ", storePhoneNumber='" + storePhoneNumber + '\'' +
                 ", storeAddress='" + storeAddress + '\'' +
                 ", storeOpeningHours='" + storeOpeningHours + '\'' +
+                ", productCategories=" + productCategories +
                 ", payerAccountNumber='" + payerAccountNumber + '\'' +
                 ", registrationCertificate='" + registrationCertificate + '\'' +
+                ", paymentMethods=" + paymentMethods +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
