@@ -5,14 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class Store extends Entity {
-    @NotBlank(message = "Field must not be empty")
-    @Email
-    private String email;
-    @NotBlank(message = "Field must not be empty")
-    @Size(message = "Password length must be 5-10 characters!", min = 5, max = 10)
-    @Pattern(message = "Password must consist of numbers and latin letters!", regexp = "[\\w\\d]+")
-    private String password;
+public class Store extends User {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Store name length must be 2 - 16", min = 2, max = 16)
     private String storeName;
@@ -27,7 +20,7 @@ public class Store extends Entity {
     @Size(message = "Store opening hours length must be 2 - 60", min = 2, max = 60)
     private String storeOpeningHours;
     @NotBlank(message = "Field must not be empty")
-    @Size(message = "Payer account number has incorrect length!", min = 9, max = 9)
+    @Size(message = "Payer account number length must be 9!", min = 9, max = 9)
     @Pattern(message = "Payer account number is incorrect!", regexp = "[\\d]+")
     private String payerAccountNumber;
     @NotBlank(message = "Field must not be empty")
