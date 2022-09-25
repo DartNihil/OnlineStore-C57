@@ -2,6 +2,7 @@ package by.tms.web.controller;
 
 
 import by.tms.entity.Store;
+import by.tms.entity.User;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,5 +32,13 @@ public class OnlineStoreController {
         }
         storeService.saveStore(store);
         return "redirect:/";
+    }
+    @GetMapping("/login")
+    public String login(@ModelAttribute("user") User user){
+        return "login";
+    }
+    @PostMapping("/login")
+    public String login1(){
+        return "";
     }
 }

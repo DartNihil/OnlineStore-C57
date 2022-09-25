@@ -13,4 +13,5 @@ public abstract class User extends Entity {
     @Size(message = "Password length must be 5-10 characters!", min = 5, max = 10)
     @Pattern(message = "Password must consist of numbers and latin letters!", regexp = "[\\w\\d]+")
     String password;
+
 }
