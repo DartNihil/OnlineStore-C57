@@ -13,7 +13,7 @@ public class InMemoryCustomerStorage implements Storage<Customer, Long> {
     @Autowired
     private List<Customer> customerList;
     @Autowired
-    private AtomicLong CustomerIdGenerator;
+    private AtomicLong customerIdGenerator;
 
     @Override
     public Customer save(Customer customer) {
