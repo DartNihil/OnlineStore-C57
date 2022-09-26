@@ -18,15 +18,15 @@ import javax.validation.Valid;
         @Autowired
         private CustomerService customerService;
 
-        @GetMapping("/CustomerRegistration")
+        @GetMapping("/customerRegistration")
         public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
             return "CustomerRegistration";
         }
 
-        @PostMapping("/CustomerRegistration")
+        @PostMapping("/customerRegistration")
         public String registration(@Valid @ModelAttribute("newCustomer") Customer customer, BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
-                return "CustomerRegistration";
+                return "customerRegistration";
             }
             customerService.saveCustomer(customer);
             return "redirect:/";
