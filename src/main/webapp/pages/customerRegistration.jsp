@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Custom Registration</title>
@@ -13,8 +14,7 @@
 <body>
 <h2>Register customer in OnlineStore!</h2>
 <br>
-<br>
-<s:form action="/storeRegistration" method="post" modelAttribute="newCustumer">
+<s:form action="/customerRegistration" method="post" modelAttribute="newCustomer">
   <p>Enter your nickname:</p>
   <s:input path="nickname" size="30" placeholder="Nickname"/>
   <br>

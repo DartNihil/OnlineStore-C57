@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
         @GetMapping("/customerRegistration")
         public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
-            return "CustomerRegistration";
+            return "customerRegistration";
         }
 
         @PostMapping("/customerRegistration")
