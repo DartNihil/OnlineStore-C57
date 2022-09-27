@@ -18,7 +18,7 @@ public class CustomerService {
         customerStorage.save(customer);
         return customer;
     }
-    public Optional<Customer> findEntity(String email){
+    public Optional<Customer> findCustomerByEmail(String email){
         return customerStorage.findEntity(email);
     }
 }
