@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
 public class OnlineStoreController {
     @Autowired
     private StoreService storeService;
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("/storeRegistration")
     public String storeRegistration(@ModelAttribute("newStore") Store store) {
@@ -47,28 +50,26 @@ public class OnlineStoreController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-
-        if (storeService.findStoreByEmail(user.getEmail()).isPresent()) {
-            if (storeService.findStoreByEmail(user.getEmail()).get().getPassword().equals(user.getPassword())) {
-                session.setAttribute("currentUser", user);
+        Optional<Store> store = storeService.findStoreByEmail(user.getEmail());
+        Optional<Customer> customer = customerService.findCustomerByEmail(user.getEmail());
+        if (store.isPresent()) {
+            if (store.get().getPassword().equals(user.getPassword())) {
+                session.setAttribute("currentUser", store);
                 return "redirect:/"; //should return to homepage or profile page
             } else {
                 model.addAttribute("message", "Wrong password");
                 return "login";
             }
         }
-        /**
-         * Uncomment after CustomerService, InMemoryCustomerService and Customer classes added
-         */
-//        else if (customerService.findCustomerByEmail(user.getEmail()).isPresent()) {
-//            if (customerService.findCustomerByEmail(user.getEmail()).get().getPassword().equals(user.getPassword())) {
-//                session.setAttribute("currentUser", user);
-//                return "redirect:/"; //should return to homepage or profile page
-//            } else {
-//                model.addAttribute("message", "Wrong password");
-//                return "login";
-//            }
-//        }
+        else if (customer.isPresent()) {
+            if (customer.get().getPassword().equals(user.getPassword())) {
+                session.setAttribute("currentUser", customer);
+                return "redirect:/"; //should return to homepage or profile page
+            } else {
+                model.addAttribute("message", "Wrong password");
+                return "login";
+            }
+        }
         else {
             model.addAttribute("message", "No such user");
             return "login";

@@ -28,6 +28,11 @@ public class WebConfiguration {
     public List<Store> storeList() {
         return new ArrayList<>();
     }
+    @Bean
+    @Lazy
+    public List<Customer> customers() {
+        return new ArrayList<>();
+    }
 
     @Bean
     public ViewResolver viewResolver() {
