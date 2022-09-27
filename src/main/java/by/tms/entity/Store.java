@@ -1,8 +1,6 @@
 package by.tms.entity;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,11 @@ public class Store extends User {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Store opening hours length must be 2 - 60", min = 2, max = 60)
     private String storeOpeningHours;
+    @NotNull
+    @Size(min = 1, max = 5)
     private List<String> productCategories;
+    @NotNull
+    @Size(min = 1, max = 3)
     private List<String> paymentMethods;
 
     public Store() {
