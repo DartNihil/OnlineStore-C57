@@ -8,6 +8,6 @@ public abstract class Entity {
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 }
