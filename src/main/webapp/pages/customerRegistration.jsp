@@ -14,7 +14,7 @@
 <body>
 <h2>Register customer in OnlineStore!</h2>
 <br>
-<s:form action="/customerRegistration" method="post" modelAttribute="newCustomer">
+<s:form action="/customer/customerRegistration" method="post" modelAttribute="newCustomer">
   <p>Enter your nickname:</p>
   <s:input path="nickname" size="30" placeholder="Nickname"/>
   <br>

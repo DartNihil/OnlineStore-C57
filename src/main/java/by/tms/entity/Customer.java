@@ -17,9 +17,11 @@ public class Customer extends User {
     @Size(message = "Lastname length must be 2 - 16", min = 2, max = 16)
     private String lastname;
 
-    public Customer() {}
+    public Customer() {
+    }
 
-    public Customer(String nickname, String firstname, String lastname) {
+    public Customer(long id, String email, String password, String nickname, String firstname, String lastname) {
+        super(id, email, password);
         this.nickname = nickname;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -49,31 +51,15 @@ public class Customer extends User {
         this.lastname = lastname;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
                 "nickname='" + nickname + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
+                ", email='" + this.getEmail() + '\'' +
+                ", password='" + this.getPassword() + '\'' +
+                ", id='" + this.getId() + '\'' +
                 '}';
     }
 }
