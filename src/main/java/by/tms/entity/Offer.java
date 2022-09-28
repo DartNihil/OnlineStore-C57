@@ -3,7 +3,7 @@ package by.tms.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Offer {
+public class Offer extends Entity {
     private LocalDateTime offerDateTime;
     private Product product;
     private String description;
