@@ -34,7 +34,7 @@ public class OnlineStoreController {
             storeService.saveStore(store);
             return "redirect:/";
         } else {
-            model.addAttribute("message", "Store already exists");
+            model.addAttribute("message", "User already exists");
             return "storeRegistration";
         }
     }
