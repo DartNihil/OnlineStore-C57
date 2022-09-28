@@ -5,7 +5,7 @@
     <title>Create Offer</title>
 </head>
 <body>
-<h2>Create your offer in OnlineStore!</h2>
+<h2>Step 2: Enter smartphone's specifications!</h2>
 <br>
 <s:form action="/store/addSmartphone" method="post" modelAttribute="newSmartphone">
     <p>Add a link to your product image:</p>

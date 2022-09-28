@@ -15,26 +15,15 @@ public class OfferService {
     @Qualifier("inMemoryOfferStorage")
     private Storage<Offer, Long> offerStorage;
 
-    public Offer saveOffer(Offer offer, Store store) {
-        offer.setStore(store);
+    public Offer saveOffer(Offer offer) {
         offerStorage.save(offer);
-        System.out.println(offer.getProduct().getClass().toString());
-        System.out.println(offer);
         return offer;
     }
-    public Offer createOfferWithStoreAndProductCategory(Offer offer, Store store, String productCategory) {
+
+    public Offer createOfferWithStoreAndProductCategory(Store store, Product product) {
+        Offer offer = new Offer();
         offer.setStore(store);
-        Map<String, Product> productMap = new HashMap<>();
-        productMap.put("Smartphone", new Smartphone());
-        productMap.put("Notebook", new Notebook());
-        productMap.put("ElectronicBook", new ElectronicBook());
-        productMap.put("Smartwatch", new Smartwatch());
-        productMap.put("Tablet", new Tablet());
-        for (String key: productMap.keySet()) {
-            if (key.equals(productCategory)) {
-                offer.setProduct(productMap.get(key));
-            }
-        }
+        offer.setProduct(product);
         return offer;
     }
 }

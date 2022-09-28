@@ -24,6 +24,14 @@ public class Smartphone extends Product {
     public String toString() {
         return "Smartphone{" +
                 "simCardFormat='" + simCardFormat + '\'' +
+                ", srcPicture='" + this.getSrcPicture() + '\'' +
+                ", productName='" + this.getProductName() + '\'' +
+                ", producer='" + this.getProducer() + '\'' +
+                ", releaseDate='" + this.getReleaseDate() + '\'' +
+                ", screenSize='" + this.getScreenSize() + '\'' +
+                ", color='" + this.getColor() + '\'' +
+                ", operatingSystem='" + this.getOperatingSystem() + '\'' +
+                ", batteryCapacity='" + this.getBatteryCapacity() + '\'' +
                 '}';
     }
 }
