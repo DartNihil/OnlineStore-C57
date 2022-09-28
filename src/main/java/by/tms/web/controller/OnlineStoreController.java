@@ -5,6 +5,7 @@ import by.tms.entity.Store;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +26,16 @@ public class OnlineStoreController {
     }
 
     @PostMapping("/storeRegistration")
-    public String registration(@Valid @ModelAttribute("newStore") Store store, BindingResult bindingResult) {
+    public String registration(@Valid @ModelAttribute("newStore") Store store, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "storeRegistration";
         }
-        storeService.saveStore(store);
-        return "redirect:/";
+        if (storeService.findStoreByEmail(store.getEmail()).isEmpty()) {
+            storeService.saveStore(store);
+            return "redirect:/";
+        } else {
+            model.addAttribute("message", "Store already exists");
+            return "storeRegistration";
+        }
     }
 }

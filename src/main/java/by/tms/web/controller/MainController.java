@@ -21,10 +21,16 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/")
 public class MainController {
+
+    private final StoreService storeService;
+
+    private final CustomerService customerService;
+
     @Autowired
-    private StoreService storeService;
-    @Autowired
-    private CustomerService customerService;
+    public MainController(StoreService storeService, CustomerService customerService) {
+        this.storeService = storeService;
+        this.customerService = customerService;
+    }
 
     @GetMapping("/login")
     public String login(@ModelAttribute("user") User user) {
@@ -42,16 +48,15 @@ public class MainController {
         if (store.isPresent()) {
             if (store.get().getPassword().equals(user.getPassword())) {
                 session.setAttribute("currentUser", store);
-                return "redirect:/"; //should return to homepage or profile page
+                return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");
                 return "login";
             }
-        }
-        else if (customer.isPresent()) {
+        } else if (customer.isPresent()) {
             if (customer.get().getPassword().equals(user.getPassword())) {
                 session.setAttribute("currentUser", customer);
-                return "redirect:/"; //should return to homepage or profile page
+                return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");
                 return "login";
