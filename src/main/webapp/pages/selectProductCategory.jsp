@@ -14,14 +14,14 @@
 <body link="black">
 <h2>Select product category: </h2>
 <br>
-<a href="/addSmartphone">Smartphone</a>
+<a href="/store/addSmartphone">Smartphone</a>
 <br>
-<a href="/addNotebook">Notebook</a>
+<a href="/store/addNotebook">Notebook</a>
 <br>
-<a href="/addElectronicBook">ElectronicBook</a>
+<a href="/store/addElectronicBook">ElectronicBook</a>
 <br>
-<a href="/addSmartwatch">Smartwatch</a>
+<a href="/store/addSmartwatch">Smartwatch</a>
 <br>
-<a href="/addTablet">Tablet</a>
+<a href="/store/addTablet">Tablet</a>
 
 

@@ -88,4 +88,18 @@ public abstract class Product {
     public void setBatteryCapacity(String batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "srcPicture='" + srcPicture + '\'' +
+                ", productName='" + productName + '\'' +
+                ", producer='" + producer + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", screenSize='" + screenSize + '\'' +
+                ", color='" + color + '\'' +
+                ", operatingSystem='" + operatingSystem + '\'' +
+                ", batteryCapacity='" + batteryCapacity + '\'' +
+                '}';
+    }
 }

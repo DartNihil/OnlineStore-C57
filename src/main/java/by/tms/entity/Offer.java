@@ -10,6 +10,10 @@ public class Offer extends Entity {
     private BigDecimal price;
     private Store store;
 
+    public Offer() {
+        this.offerDateTime = LocalDateTime.now();
+    }
+
     public Offer(LocalDateTime offerDateTime, Product product, String description, BigDecimal price, Store store) {
         this.offerDateTime = offerDateTime;
         this.product = product;
@@ -56,5 +60,16 @@ public class Offer extends Entity {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "offerDateTime=" + offerDateTime +
+                ", product=" + product +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", store=" + store +
+                '}';
     }
 }

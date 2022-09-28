@@ -2,6 +2,7 @@ package by.tms.web.controller;
 
 
 import by.tms.entity.Offer;
+import by.tms.entity.Smartphone;
 import by.tms.entity.Store;
 import by.tms.service.OfferService;
 import by.tms.service.StoreService;
@@ -38,17 +39,20 @@ public class OnlineStoreController {
         return "redirect:/";
     }
     @GetMapping("/addSmartphone")
-    public String addingOffer(@ModelAttribute("newOffer") Offer newOffer) {
-        return "addingOffer";
+    public String addingOffer(@ModelAttribute("newSmartphone") Smartphone newSmartphone) {
+        return "addSmartphone";
     }
 
     @PostMapping("/addSmartphone")
-    public String addingOffer(@Valid @ModelAttribute("newOffer") Offer newOffer, BindingResult bindingResult, HttpSession httpSession) {
+    public String addingOffer(@Valid @ModelAttribute("newSmartphone") Smartphone newSmartphone, BindingResult bindingResult, HttpSession httpSession) {
         Store store = (Store) httpSession.getAttribute("currentUser");
+        Offer newOffer = new Offer();
+        newOffer = offerService.createOfferWithStoreAndProductCategory(newOffer, store, "Smartphone");
         if (bindingResult.hasErrors()) {
             return "addingOffer";
         }
-        offerService.saveOffer(newOffer, store);
+        newOffer.setProduct(newSmartphone);
+        System.out.println(newOffer);
         return "redirect:/";
     }
 }

@@ -19,4 +19,11 @@ public class Smartphone extends Product {
     public void setSimCardFormat(String simCardFormat) {
         this.simCardFormat = simCardFormat;
     }
+
+    @Override
+    public String toString() {
+        return "Smartphone{" +
+                "simCardFormat='" + simCardFormat + '\'' +
+                '}';
+    }
 }
