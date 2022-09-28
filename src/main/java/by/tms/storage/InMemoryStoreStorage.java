@@ -4,16 +4,17 @@ import by.tms.entity.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component("inMemoryStoreStorage")
 public class InMemoryStoreStorage implements Storage<Store, Long> {
-    @Autowired
-    private List<Store> storeList;
-    @Autowired
-    private AtomicLong storeIdGenerator;
+
+    private final List<Store> storeList = new ArrayList<>();
+
+    private final AtomicLong storeIdGenerator = new AtomicLong(0);
 
     @Override
     public Store save(Store store) {

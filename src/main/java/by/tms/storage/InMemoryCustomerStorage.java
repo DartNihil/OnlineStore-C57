@@ -4,16 +4,17 @@ import by.tms.entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component("inMemoryCustomerStorage")
 public class InMemoryCustomerStorage implements Storage<Customer, Long> {
-    @Autowired
-    private List<Customer> customerList;
-    @Autowired
-    private AtomicLong customerIdGenerator;
+
+    private final List<Customer> customerList = new ArrayList<>();
+
+    private final AtomicLong customerIdGenerator = new AtomicLong(0);
 
     @Override
     public Customer save(Customer customer) {
