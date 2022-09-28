@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-    @Controller
-    @RequestMapping("/customer")
-    public class OnlineCustomerController {
-        @Autowired
-        private CustomerService customerService;
+@Controller
+@RequestMapping("/customer")
+public class OnlineCustomerController {
+    @Autowired
+    private CustomerService customerService;
 
-        @GetMapping("/customerRegistration")
-        public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
+    @GetMapping("/customerRegistration")
+    public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
+        return "customerRegistration";
+    }
+
+    @PostMapping("/customerRegistration")
+    public String registration(@Valid @ModelAttribute("newCustomer") Customer customer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "customerRegistration";
         }
-
-        @PostMapping("/customerRegistration")
-        public String registration(@Valid @ModelAttribute("newCustomer") Customer customer, BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                return "customerRegistration";
-            }
-            customerService.saveCustomer(customer);
-            return "redirect:/";
-        }
+        customerService.saveCustomer(customer);
+        return "redirect:/";
     }
+}
