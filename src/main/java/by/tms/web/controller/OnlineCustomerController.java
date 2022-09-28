@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
     @Controller
-    @RequestMapping("/")
+    @RequestMapping("/customer")
     public class OnlineCustomerController {
         @Autowired
         private CustomerService customerService;
