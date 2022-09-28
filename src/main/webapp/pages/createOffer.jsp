@@ -14,7 +14,7 @@
     <s:errors path="description"/>
     <br>
     <p>Enter your offer price:</p>
-    <s:input path="price" size="30" placeholder="Price"/>
+    <s:input path="price" size="30" placeholder="Price"/> BYN</br>
     <br>
     <s:errors path="price"/>
     <br>

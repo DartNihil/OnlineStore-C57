@@ -39,7 +39,7 @@
     <s:errors path="operatingSystem"/>
     <br>
     <p>Enter battery capacity of your product:</p>
-    <s:input path="batteryCapacity" size="30" placeholder="Battery capacity"/>
+    <s:input path="batteryCapacity" size="30" placeholder="Battery capacity"/> mA*h</br>
     <br>
     <s:errors path="batteryCapacity"/>
     <br>

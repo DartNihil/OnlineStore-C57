@@ -1,13 +1,37 @@
 package by.tms.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public abstract class Product {
+    @NotBlank(message = "Field must not be empty")
+    @Pattern(message = "Must be src link", regexp = "https:.+\\.[\\w]{3,4}")
     private String srcPicture;
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Product name length must be more then 2", min = 2)
     private String productName;
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Producer length must be more then 2", min = 2)
     private String producer;
+
+    @Pattern(message = "Must be year of release", regexp = "\\d+")
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Must be year of release", min = 4, max = 4)
     private String releaseDate;
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "screenSize length must be more then 2", min = 2)
     private String screenSize;
+    @NotBlank(message = "Field must not be empty")
+    @Pattern(message = "Must be letters", regexp = "\\w+")
+    @Size(message = "color length must be more then 2", min = 2)
     private String color;
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Operating system length must be more then 2", min = 2)
     private String operatingSystem;
+    @NotBlank(message = "Field must not be empty")
+    @Pattern(message = "Must be numbers", regexp = "\\d+")
+    @Size(message = "Battery capacity length must be more then 2", min = 2)
     private String batteryCapacity;
 
     public Product() {
