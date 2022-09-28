@@ -18,23 +18,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @ComponentScan(basePackages = "by.tms")
 public class WebConfiguration {
     @Bean
-    @Lazy
-    public AtomicLong storeIdGenerator() {
-        return new AtomicLong(0);
-    }
-
-    @Bean
-    @Lazy
-    public List<Store> storeList() {
-        return new ArrayList<>();
-    }
-    @Bean
-    @Lazy
-    public List<Customer> customers() {
-        return new ArrayList<>();
-    }
-
-    @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
         internalResourceViewResolver.setSuffix(".jsp");
