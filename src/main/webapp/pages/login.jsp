@@ -25,9 +25,7 @@
 <p style="color: red">${message}</p>
 
 <h3>Not registered yet?</h3>
-<a href="/storeRegistration">Register as a Store</a>
-<!-- Link to customer registration -->
-<a href="">Register as a Customer</a>
-
+<a href="store/storeRegistration">Register as a Store</a>
+<a href="/customer/customerRegistration">Register as a Customer</a>
 </body>
 </html>

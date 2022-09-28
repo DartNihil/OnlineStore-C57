@@ -48,17 +48,17 @@ public class MainController {
                 return "login";
             }
         }
-//        else if (customer.isPresent()) {
-//            if (customer.get().getPassword().equals(user.getPassword())) {
-//                session.setAttribute("currentUser", customer);
-//                return "redirect:/"; //should return to homepage or profile page
-//            } else {
-//                model.addAttribute("message", "Wrong password");
-//                return "login";
-//            }
-//        } else {
-//            model.addAttribute("message", "No such user");
-//            return "login";
-//        }
+        else if (customer.isPresent()) {
+            if (customer.get().getPassword().equals(user.getPassword())) {
+                session.setAttribute("currentUser", customer);
+                return "redirect:/"; //should return to homepage or profile page
+            } else {
+                model.addAttribute("message", "Wrong password");
+                return "login";
+            }
+        } else {
+            model.addAttribute("message", "No such user");
+            return "login";
+        }
     }
 }
