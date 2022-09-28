@@ -1,21 +1,16 @@
 package by.tms.web.controller;
 
 
-import by.tms.dto.ConvertDTOtoObject;
+import by.tms.dto.ConvertDTOToObject;
 import by.tms.dto.OfferDTO;
-import by.tms.entity.Offer;
-import by.tms.entity.Smartphone;
-import by.tms.entity.Store;
+import by.tms.entity.*;
 import by.tms.service.OfferService;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -27,7 +22,7 @@ public class OnlineStoreController {
     @Autowired
     private OfferService offerService;
     @Autowired
-    private ConvertDTOtoObject convertDTOtoObject;
+    private ConvertDTOToObject convertDTOToObject;
 
     @GetMapping("/storeRegistration")
     public String storeRegistration(@ModelAttribute("newStore") Store store) {
@@ -58,6 +53,70 @@ public class OnlineStoreController {
         httpSession.setAttribute("offer", offer);
         return "redirect:/store/createOffer";
     }
+    @GetMapping("/addElectronicBook")
+    public String addingOffer(@ModelAttribute("newElectronicBook") ElectronicBook newElectronicBook) {
+        return "addElectronicBook";
+    }
+
+    @PostMapping("/addElectronicBook")
+    public String addingOffer(@Valid @ModelAttribute("newElectronicBook") ElectronicBook newElectronicBook, BindingResult bindingResult,
+                              HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            return "addElectronicBook";
+        }
+        Store store = (Store) httpSession.getAttribute("currentUser");
+        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newElectronicBook);
+        httpSession.setAttribute("offer", offer);
+        return "redirect:/store/createOffer";
+    }
+    @GetMapping("/addNotebook")
+    public String addingOffer(@ModelAttribute("newNotebook") Notebook newNotebook) {
+        return "addNotebook";
+    }
+
+    @PostMapping("/addNotebook")
+    public String addingOffer(@Valid @ModelAttribute("newNotebook") Notebook newNotebook, BindingResult bindingResult,
+                              HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            return "addNotebook";
+        }
+        Store store = (Store) httpSession.getAttribute("currentUser");
+        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newNotebook);
+        httpSession.setAttribute("offer", offer);
+        return "redirect:/store/createOffer";
+    }
+    @GetMapping("/addSmartwatch")
+    public String addingOffer(@ModelAttribute("newSmartwatch") Smartwatch newSmartwatch) {
+        return "addSmartwatch";
+    }
+
+    @PostMapping("/addSmartwatch")
+    public String addingOffer(@Valid @ModelAttribute("newSmartwatch") Smartwatch newSmartwatch, BindingResult bindingResult,
+                              HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            return "addSmartwatch";
+        }
+        Store store = (Store) httpSession.getAttribute("currentUser");
+        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartwatch);
+        httpSession.setAttribute("offer", offer);
+        return "redirect:/store/createOffer";
+    }
+    @GetMapping("/addTablet")
+    public String addingOffer(@ModelAttribute("newTablet") Tablet newTablet) {
+        return "addTablet";
+    }
+
+    @PostMapping("/addTablet")
+    public String addingOffer(@Valid @ModelAttribute("newTablet") Tablet newTablet, BindingResult bindingResult,
+                              HttpSession httpSession) {
+        if (bindingResult.hasErrors()) {
+            return "addTablet";
+        }
+        Store store = (Store) httpSession.getAttribute("currentUser");
+        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newTablet);
+        httpSession.setAttribute("offer", offer);
+        return "redirect:/store/createOffer";
+    }
     @GetMapping("/createOffer")
     public String storeRegistration(@ModelAttribute("OfferDTO") OfferDTO offerDTO) {
         return "createOffer";
@@ -65,11 +124,11 @@ public class OnlineStoreController {
 
     @PostMapping("/createOffer")
     public String registration(@Valid @ModelAttribute("OfferDTO") OfferDTO offerDTO, BindingResult bindingResult, HttpSession httpSession) {
-        Offer offer = (Offer) httpSession.getAttribute("offer");
         if (bindingResult.hasErrors()) {
             return "createOffer";
         }
-        offer = convertDTOtoObject.convertOfferDTOtoOffer(offerDTO, offer);
+        Offer offer = (Offer) httpSession.getAttribute("offer");
+        offer = convertDTOToObject.convertOfferDTOtoOffer(offerDTO, offer);
         offerService.saveOffer(offer);
         httpSession.removeAttribute("offer");
         return "redirect:/";

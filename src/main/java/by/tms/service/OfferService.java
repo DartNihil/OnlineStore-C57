@@ -17,6 +17,7 @@ public class OfferService {
 
     public Offer saveOffer(Offer offer) {
         offerStorage.save(offer);
+        System.out.println(offer);
         return offer;
     }
 
