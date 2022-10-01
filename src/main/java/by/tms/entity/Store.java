@@ -28,30 +28,14 @@ public class Store extends User {
     public Store() {
     }
 
-    public Store(String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours,
-                 List<String> productCategories, List<String> paymentMethods) {
+    public Store(long id, String email, String password, String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours, List<String> productCategories, List<String> paymentMethods) {
+        super(id, email, password);
         this.storeName = storeName;
         this.storePhoneNumber = storePhoneNumber;
         this.storeAddress = storeAddress;
         this.storeOpeningHours = storeOpeningHours;
         this.productCategories = productCategories;
         this.paymentMethods = paymentMethods;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getStoreName() {
@@ -111,9 +95,9 @@ public class Store extends User {
                 ", storeOpeningHours='" + storeOpeningHours + '\'' +
                 ", productCategories=" + productCategories +
                 ", paymentMethods=" + paymentMethods +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", id=" + id +
+                ", email='" + this.getEmail() + '\'' +
+                ", password='" + this.getPassword() + '\'' +
+                ", id='" + this.getId() + '\'' +
                 '}';
     }
 }

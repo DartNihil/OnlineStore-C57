@@ -2,8 +2,8 @@ package by.tms.storage;
 
 import java.util.Optional;
 
-public interface CrudDao<Entity, Id> {
-    Entity save(Entity entity);
+public interface CrudDao<T, ID> {
+    T save(T entity);
 
-    Optional<entity> findById(Id id);
+    Optional<T> findById(ID id);
 }
