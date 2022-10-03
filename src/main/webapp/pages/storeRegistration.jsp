@@ -41,10 +41,10 @@
     <s:errors path="storeOpeningHours"/>
     <br>
     <p>Choose product categories you want to sell:</p>
-    <s:checkbox path="productCategories" value="SmartPhone"/>SmartPhone<br/>
+    <s:checkbox path="productCategories" value="Smartphone"/>Smartphone<br/>
     <s:checkbox path="productCategories" value="Notebook"/>Notebook<br/>
     <s:checkbox path="productCategories" value="ElectronicBook"/>ElectronicBook<br/>
-    <s:checkbox path="productCategories" value="SmartWatch"/>SmartWatch<br/>
+    <s:checkbox path="productCategories" value="Smartwatch"/>Smartwatch<br/>
     <s:checkbox path="productCategories" value="Tablet"/>Tablet<br/>
     <br>
     <p>Choose possible payment methods:</p>
