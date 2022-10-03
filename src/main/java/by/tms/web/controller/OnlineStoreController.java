@@ -118,12 +118,12 @@ public class OnlineStoreController {
         return "redirect:/store/createOffer";
     }
     @GetMapping("/createOffer")
-    public String storeRegistration(@ModelAttribute("OfferDTO") OfferDTO offerDTO) {
+    public String createOffer(@ModelAttribute("OfferDTO") OfferDTO offerDTO) {
         return "createOffer";
     }
 
     @PostMapping("/createOffer")
-    public String registration(@Valid @ModelAttribute("OfferDTO") OfferDTO offerDTO, BindingResult bindingResult, HttpSession httpSession) {
+    public String createOffer(@Valid @ModelAttribute("OfferDTO") OfferDTO offerDTO, BindingResult bindingResult, HttpSession httpSession) {
         if (bindingResult.hasErrors()) {
             return "createOffer";
         }
