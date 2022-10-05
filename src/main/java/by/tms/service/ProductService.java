@@ -25,8 +25,33 @@ public class ProductService {
         return product;
     }
 
+    public List<Product> getProductListForStoreOffer(String productCategory) {
+        fillProductListToTest();
+        List<Product> productList = null;
+        switch (productCategory) {
+            case ("Smartphone"):
+                productList = getSmartphoneList();
+                break;
+            case ("Tablet"):
+                productList = getTabletList();
+                break;
+            case ("Notebook"):
+                productList = getNotebookList();
+                break;
+            case ("ElectronicBook"):
+                productList = getElectronicBookList();
+                break;
+            case ("Smartwatch"):
+                productList = getSmartwatchList();
+                break;
+            default:
+                break;
+        }
+        return productList;
+    }
+
     //method to test
-    public void fillProductListToTest() {
+    private void fillProductListToTest() {
         saveProduct(new Smartphone("111", "Iphone1", "Apple", "2022", "123size", "black", "IOS", "12345", "nano"));
         saveProduct(new Tablet("444", "Ipad1", "Apple", "2022", "444size", "black", "IOS", "12345", "98752"));
         saveProduct(new Smartphone("222", "Iphone2", "Apple", "2021", "222size", "black", "IOS", "1234", "nano"));
@@ -36,28 +61,28 @@ public class ProductService {
         saveProduct(new Smartwatch("777", "SWatch1", "Huawei", "2022", "777size", "black", "Android", "777", "leather"));
     }
 
-    public List<Product> getSmartphoneList() {
+    private List<Product> getSmartphoneList() {
         return productStorage.getListOfEntity().stream().filter(product ->
-                product.getClass().toString().matches(".+\\.Smartphone")).toList();
+                product instanceof Smartphone).toList();
     }
 
-    public List<Product> getSmartwatchList() {
+    private List<Product> getSmartwatchList() {
         return productStorage.getListOfEntity().stream().filter(product ->
-                product.getClass().toString().matches(".+\\.Smartwatch")).toList();
+                product instanceof Smartwatch).toList();
     }
 
-    public List<Product> getElectronicBookList() {
+    private List<Product> getElectronicBookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
-                product.getClass().toString().matches(".+\\.ElectronicBook")).toList();
+                product instanceof ElectronicBook).toList();
     }
 
-    public List<Product> getTabletList() {
+    private List<Product> getTabletList() {
         return productStorage.getListOfEntity().stream().filter(product ->
-                product.getClass().toString().matches(".+\\.Tablet")).toList();
+                product instanceof Tablet).toList();
     }
 
-    public List<Product> getNotebookList() {
+    private List<Product> getNotebookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
-                product.getClass().toString().matches(".+\\.Notebook")).toList();
+                product instanceof Notebook).toList();
     }
 }

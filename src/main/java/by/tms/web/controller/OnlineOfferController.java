@@ -38,11 +38,7 @@ public class OnlineOfferController {
 
     @PostMapping("/selectProductCategory")
     public String selectProductCategory(String productCategory, Model model) {
-        productService.fillProductListToTest(); //test method
-        List<Product> productList = null;
-        if (productCategory.equals("Smartphone")) {
-            productList = productService.getSmartphoneList();
-        }
+        List<Product> productList = productService.getProductListForStoreOffer(productCategory);
         model.addAttribute("productList", productList);
         return "selectProduct";
     }
