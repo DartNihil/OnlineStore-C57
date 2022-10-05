@@ -10,10 +10,11 @@ public class OfferDTO {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Description length must be more then 2", min = 2)
     private String description;
+    @NotBlank(message = "Field must not be empty")
+    @Pattern(message = "Prise must be in format ***.**!", regexp = "[\\d]+\\.[\\d]{2}")
+    private String price;
 
-    private BigDecimal price;
-
-    public OfferDTO(String description, BigDecimal price) {
+    public OfferDTO(String description, String price) {
         this.description = description;
         this.price = price;
     }
@@ -26,11 +27,11 @@ public class OfferDTO {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }
