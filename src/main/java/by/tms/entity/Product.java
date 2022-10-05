@@ -116,7 +116,8 @@ public abstract class Product extends Entity {
     @Override
     public String toString() {
         return "Product{" +
-                "srcPicture='" + srcPicture + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", srcPicture='" + srcPicture + '\'' +
                 ", productName='" + productName + '\'' +
                 ", producer='" + producer + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +

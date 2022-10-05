@@ -12,10 +12,10 @@
     <title>Select product</title>
 </head>
 <body>
-<p>Select your electronic book in OnlineStoreCatalog</p>
+<h2>Step 2: Select your electronic book in OnlineStoreCatalog</h2>
 <form action="/offer/addElectronicBook" method="post">
     <c:forEach items="${productList}" var="product">
-        <input type="radio" name="newElectronicBook" value="${product}">${product}<br/>
+        <input type="radio" name="id" value="${product.id}">${product}<br/>
     </c:forEach>
     <br>
     <button>Continue</button>

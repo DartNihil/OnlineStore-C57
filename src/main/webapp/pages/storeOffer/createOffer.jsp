@@ -7,7 +7,7 @@
 <body>
 <h2>Step 3: create your offer in OnlineStore!</h2>
 <br>
-<s:form action="/store/createOffer" method="post" modelAttribute="OfferDTO">
+<s:form action="/offer/createOffer" method="post" modelAttribute="OfferDTO">
     <p>Enter your offer description:</p>
     <s:input path="description" size="30" placeholder="Description"/>
     <br>

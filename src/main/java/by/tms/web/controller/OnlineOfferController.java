@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/offer")
@@ -38,16 +39,20 @@ public class OnlineOfferController {
     public String selectProductCategory(String productCategory, Model model) {
         List<Product> productList = productService.getProductListForStoreOffer(productCategory);
         model.addAttribute("productList", productList);
-        return "storeOffer/selectSmartphone";
+        return productService.getPageNameForProduct(productCategory);
     }
 
     @GetMapping("/addSmartphone")
-    public String addProduct() {
+    public String addSmartphone() {
         return "storeOffer/selectSmartphone";
     }
 
     @PostMapping("/addSmartphone")
-    public String addProduct(Smartphone newSmartphone, HttpSession httpSession) {
+    public String addSmartphone(Long id, Smartphone newSmartphone, HttpSession httpSession) {
+        Optional<Product> smartphoneInBase = productService.findProductById(id);
+        if(smartphoneInBase.isPresent()) {
+            newSmartphone = (Smartphone) smartphoneInBase.get();
+        }
         Store store = (Store) httpSession.getAttribute("currentUser");
         Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartphone);
         httpSession.setAttribute("offer", offer);
@@ -60,7 +65,11 @@ public class OnlineOfferController {
     }
 
     @PostMapping("/addElectronicBook")
-    public String addElectronicBook(ElectronicBook newElectronicBook, HttpSession httpSession) {
+    public String addElectronicBook(Long id, ElectronicBook newElectronicBook, HttpSession httpSession) {
+        Optional<Product> electronicBookInBase = productService.findProductById(id);
+        if(electronicBookInBase.isPresent()) {
+            newElectronicBook = (ElectronicBook) electronicBookInBase.get();
+        }
         Store store = (Store) httpSession.getAttribute("currentUser");
         Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newElectronicBook);
         httpSession.setAttribute("offer", offer);
@@ -73,7 +82,11 @@ public class OnlineOfferController {
     }
 
     @PostMapping("/addNotebook")
-    public String addNotebook(Notebook newNotebook, HttpSession httpSession) {
+    public String addNotebook(Long id, Notebook newNotebook, HttpSession httpSession) {
+        Optional<Product> notebookInBase = productService.findProductById(id);
+        if(notebookInBase.isPresent()) {
+            newNotebook = (Notebook) notebookInBase.get();
+        }
         Store store = (Store) httpSession.getAttribute("currentUser");
         Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newNotebook);
         httpSession.setAttribute("offer", offer);
@@ -86,7 +99,11 @@ public class OnlineOfferController {
     }
 
     @PostMapping("/addSmartwatch")
-    public String addSmartwatch(Smartwatch newSmartwatch, HttpSession httpSession) {
+    public String addSmartwatch(Long id, Smartwatch newSmartwatch, HttpSession httpSession) {
+        Optional<Product> smartwatchInBase = productService.findProductById(id);
+        if(smartwatchInBase.isPresent()) {
+            newSmartwatch = (Smartwatch) smartwatchInBase.get();
+        }
         Store store = (Store) httpSession.getAttribute("currentUser");
         Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartwatch);
         httpSession.setAttribute("offer", offer);
@@ -99,98 +116,16 @@ public class OnlineOfferController {
     }
 
     @PostMapping("/addTablet")
-    public String addTablet(Tablet newTablet, HttpSession httpSession) {
+    public String addTablet(Long id, Tablet newTablet, HttpSession httpSession) {
+        Optional<Product> tabletInBase = productService.findProductById(id);
+        if(tabletInBase.isPresent()) {
+            newTablet = (Tablet) tabletInBase.get();
+        }
         Store store = (Store) httpSession.getAttribute("currentUser");
         Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newTablet);
         httpSession.setAttribute("offer", offer);
         return "redirect:/offer/createOffer";
     }
-
-//    @GetMapping("/addSmartphone")
-//    public String addingOffer(@ModelAttribute("newSmartphone") Smartphone newSmartphone) {
-//        return "addSmartphone";
-//    }
-//
-//    @PostMapping("/addSmartphone")
-//    public String addingOffer(@Valid @ModelAttribute("newSmartphone") Smartphone newSmartphone, BindingResult bindingResult,
-//                              HttpSession httpSession, String productCategory) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return "addSmartphone";
-//        }
-//        Store store = (Store) httpSession.getAttribute("currentUser");
-//        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartphone);
-//        httpSession.setAttribute("offer", offer);
-//        return "redirect:/offer/createOffer";
-//    }
-//
-//    @GetMapping("/addElectronicBook")
-//    public String addingOffer(@ModelAttribute("newElectronicBook") ElectronicBook newElectronicBook) {
-//        return "addElectronicBook";
-//    }
-//
-//    @PostMapping("/addElectronicBook")
-//    public String addingOffer(@Valid @ModelAttribute("newElectronicBook") ElectronicBook newElectronicBook, BindingResult bindingResult,
-//                              HttpSession httpSession) {
-//        if (bindingResult.hasErrors()) {
-//            return "addElectronicBook";
-//        }
-//        Store store = (Store) httpSession.getAttribute("currentUser");
-//        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newElectronicBook);
-//        httpSession.setAttribute("offer", offer);
-//        return "redirect:/offer/createOffer";
-//    }
-//
-//    @GetMapping("/addNotebook")
-//    public String addingOffer(@ModelAttribute("newNotebook") Notebook newNotebook) {
-//        return "addNotebook";
-//    }
-//
-//    @PostMapping("/addNotebook")
-//    public String addingOffer(@Valid @ModelAttribute("newNotebook") Notebook newNotebook, BindingResult bindingResult,
-//                              HttpSession httpSession) {
-//        if (bindingResult.hasErrors()) {
-//            return "addNotebook";
-//        }
-//        Store store = (Store) httpSession.getAttribute("currentUser");
-//        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newNotebook);
-//        httpSession.setAttribute("offer", offer);
-//        return "redirect:/offer/createOffer";
-//    }
-//
-//    @GetMapping("/addSmartwatch")
-//    public String addingOffer(@ModelAttribute("newSmartwatch") Smartwatch newSmartwatch) {
-//        return "addSmartwatch";
-//    }
-//
-//    @PostMapping("/addSmartwatch")
-//    public String addingOffer(@Valid @ModelAttribute("newSmartwatch") Smartwatch newSmartwatch, BindingResult bindingResult,
-//                              HttpSession httpSession) {
-//        if (bindingResult.hasErrors()) {
-//            return "addSmartwatch";
-//        }
-//        Store store = (Store) httpSession.getAttribute("currentUser");
-//        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartwatch);
-//        httpSession.setAttribute("offer", offer);
-//        return "redirect:/offer/createOffer";
-//    }
-//
-//    @GetMapping("/addTablet")
-//    public String addingOffer(@ModelAttribute("newTablet") Tablet newTablet) {
-//        return "addTablet";
-//    }
-//
-//    @PostMapping("/addTablet")
-//    public String addingOffer(@Valid @ModelAttribute("newTablet") Tablet newTablet, BindingResult bindingResult,
-//                              HttpSession httpSession) {
-//        if (bindingResult.hasErrors()) {
-//            return "addTablet";
-//        }
-//        Store store = (Store) httpSession.getAttribute("currentUser");
-//        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newTablet);
-//        httpSession.setAttribute("offer", offer);
-//        return "redirect:/offer/createOffer";
-//    }
 
     @GetMapping("/createOffer")
     public String createOffer(@ModelAttribute("OfferDTO") OfferDTO offerDTO) {
@@ -205,6 +140,7 @@ public class OnlineOfferController {
         Offer offer = (Offer) httpSession.getAttribute("offer");
         offer = convertDTOToObject.convertOfferDTOtoOffer(offerDTO, offer);
         offerService.saveOffer(offer);
+        System.out.println(offer);
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }

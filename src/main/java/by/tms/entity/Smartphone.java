@@ -28,7 +28,8 @@ public class Smartphone extends Product {
     @Override
     public String toString() {
         return "Smartphone{" +
-                "simCardFormat='" + simCardFormat + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", simCardFormat='" + simCardFormat + '\'' +
                 ", srcPicture='" + this.getSrcPicture() + '\'' +
                 ", productName='" + this.getProductName() + '\'' +
                 ", producer='" + this.getProducer() + '\'' +

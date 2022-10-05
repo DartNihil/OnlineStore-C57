@@ -21,10 +21,11 @@ public class ProductService {
     }
 
     public Optional<Product> findProductByProducer(String producer) {
-        Optional<Product> product = productStorage.findEntity(producer);
-        return product;
+        return productStorage.findEntity(producer);
     }
-
+    public Optional<Product> findProductById(Long id) {
+        return productStorage.findById(id);
+    }
     public List<Product> getProductListForStoreOffer(String productCategory) {
         fillProductListToTest();
         List<Product> productList = null;
@@ -48,6 +49,9 @@ public class ProductService {
                 break;
         }
         return productList;
+    }
+    public String getPageNameForProduct(String productCategory) {
+        return "storeOffer/select" + productCategory;
     }
 
     //method to test
