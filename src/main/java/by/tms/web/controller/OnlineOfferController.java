@@ -44,19 +44,14 @@ public class OnlineOfferController {
     }
 
     @GetMapping("/addProduct")
-    public String addProduct(String productCategory, Model model) {
-        if (productCategory.equals("Smartphone")) {
-            Smartphone smartphone = new Smartphone();
-            model.addAttribute("newSmartphone", smartphone);
-        }
+    public String addProduct() {
         return "selectProduct";
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@ModelAttribute("newSmartphone") Smartphone newSmartphone, HttpSession httpSession) {
-        newSmartphone.setColor("black");
+    public String addProduct(Product product, HttpSession httpSession) {
         Store store = (Store) httpSession.getAttribute("currentUser");
-        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, newSmartphone);
+        Offer offer = offerService.createOfferWithStoreAndProductCategory(store, product);
         System.out.println(offer);
         httpSession.setAttribute("offer", offer);
         return "redirect:/offer/createOffer";

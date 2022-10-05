@@ -12,11 +12,13 @@
     <title>Select product</title>
 </head>
 <body>
-<c:forEach items="${productList}" var="product">
-    <p>${product}</p>
-</c:forEach>
+<p>Select your product in OnlineStoreCatalog</p>
 <form action="/offer/addProduct" method="post">
-    <button>Submit</button>
+    <c:forEach items="${productList}" var="product">
+        <input type="radio" name="product" value="${product}">${product}<br/>
+    </c:forEach>
+    <br>
+    <button>Continue</button>
 </form>
 </body>
 </html>
