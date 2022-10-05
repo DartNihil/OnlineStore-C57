@@ -16,7 +16,8 @@
 <h2>Step 2: Select your smartphone in OnlineStoreCatalog</h2>
 <form action="/offer/addSmartphone" method="post">
     <c:forEach items="${productList}" var="product">
-        <input type="radio" name="id" value="${product.id}">${product}<br/>
+        <input type="radio" name="id" value="${product.id}"><p><b>Product name:</b> ${product.productName}; <b>Producer:</b> ${product.producer};
+            <b>Release date:</b> ${product.releaseDate}</p><br/>
     </c:forEach>
     <br>
     <button>Continue</button>

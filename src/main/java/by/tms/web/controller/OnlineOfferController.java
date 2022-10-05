@@ -140,7 +140,6 @@ public class OnlineOfferController {
         Offer offer = (Offer) httpSession.getAttribute("offer");
         offer = convertDTOToObject.convertOfferDTOtoOffer(offerDTO, offer);
         offerService.saveOffer(offer);
-        System.out.println(offer);
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }
