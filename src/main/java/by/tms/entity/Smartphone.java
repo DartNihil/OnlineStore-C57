@@ -11,8 +11,8 @@ public class Smartphone extends Product {
     public Smartphone() {
     }
 
-    public Smartphone(String srcPicture, String productName, String producer, String releaseDate, String screenSize, String color, String operatingSystem,
-                      String batteryCapacity, String simCardFormat) {
+    public Smartphone(String srcPicture, String productName, String producer, String releaseDate, String screenSize, String color,
+                      String operatingSystem, String batteryCapacity, String simCardFormat) {
         super(srcPicture, productName, producer, releaseDate, screenSize, color, operatingSystem, batteryCapacity);
         this.simCardFormat = simCardFormat;
     }

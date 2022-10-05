@@ -11,14 +11,16 @@
 <head>
     <title>Select product category</title>
 </head>
-<body link="black">
+<body>
 <h2>Step 1: Select product category: </h2>
 <br>
-<c:forEach items="${sessionScope.currentUser.productCategories}" var="productCategory">
-<ul>
-<a href="/store/add${productCategory}">${productCategory}</a>
-</ul>
-</c:forEach>
+<form action="/offer/selectProductCategory" method="post">
+    <c:forEach items="${sessionScope.currentUser.productCategories}" var="productCategory">
+        <input type="checkbox" name="productCategory" value="${productCategory}">${productCategory}<br/>
+    </c:forEach>
+    <br>
+    <button>Continue</button>
+</form>
 </body>
 </html>
 

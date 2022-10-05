@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public abstract class Product {
+public abstract class Product extends Entity {
     @NotBlank(message = "Field must not be empty")
     @Pattern(message = "Must be src link", regexp = "https:.+\\.[\\w]{3,4}")
     private String srcPicture;
