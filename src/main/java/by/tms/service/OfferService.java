@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -24,7 +22,7 @@ public class OfferService {
         return offer;
     }
 
-    public Offer createOfferWithStoreAndProductCategory(Store store, Product product) {
+    public Offer createOfferWithStoreAndProductCategory(Store store, abstractProduct product) {
         Offer offer = new Offer();
         offer.setStore(store);
         offer.setProduct(product);

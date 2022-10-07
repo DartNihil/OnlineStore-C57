@@ -3,7 +3,7 @@ package by.tms.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class Tablet extends Product {
+public class Tablet extends abstractProduct {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Screen ratio length must be more then 2", min = 2)
     private String screenRatio;

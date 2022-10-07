@@ -13,24 +13,24 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     @Qualifier("inMemoryProductStorage")
-    private Storage<Product, Long> productStorage;
+    private Storage<abstractProduct, Long> productStorage;
 
-    public Product saveProduct(Product product) {
+    public abstractProduct saveProduct(abstractProduct product) {
         productStorage.save(product);
         return product;
     }
 
-    public Optional<Product> findProductByProducer(String producer) {
+    public Optional<abstractProduct> findProductByProducer(String producer) {
         return productStorage.findEntity(producer);
     }
-    public Optional<Product> findProductById(Long id) {
+    public Optional<abstractProduct> findProductById(Long id) {
         return productStorage.findById(id);
     }
-    public List<Product> getProductListForStoreOffer(String productCategory) {
+    public List<abstractProduct> getProductListForStoreOffer(String productCategory) {
         if(productStorage.getListOfEntity().isEmpty()) {
             fillProductListToTest();
         }
-        List<Product> productList = null;
+        List<abstractProduct> productList = null;
         switch (productCategory) {
             case ("Smartphone"):
                 productList = getSmartphoneList();
@@ -67,27 +67,27 @@ public class ProductService {
         saveProduct(new Smartwatch("https://m.sila.by/img/catalog2015/img10/tovar104161.jpg", "SWatch1", "Huawei", "2022", "777size", "black", "Android", "777", "leather"));
     }
 
-    private List<Product> getSmartphoneList() {
+    private List<abstractProduct> getSmartphoneList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartphone).toList();
     }
 
-    private List<Product> getSmartwatchList() {
+    private List<abstractProduct> getSmartwatchList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartwatch).toList();
     }
 
-    private List<Product> getElectronicBookList() {
+    private List<abstractProduct> getElectronicBookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof ElectronicBook).toList();
     }
 
-    private List<Product> getTabletList() {
+    private List<abstractProduct> getTabletList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Tablet).toList();
     }
 
-    private List<Product> getNotebookList() {
+    private List<abstractProduct> getNotebookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Notebook).toList();
     }

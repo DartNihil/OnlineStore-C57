@@ -8,6 +8,7 @@
             min-height: 250px;
             position: relative
         }
+
         .productDiv img {
             position: absolute;
             top: 50%;
@@ -15,6 +16,7 @@
             margin: 0 -50% 0 0;
             transform: translate(-50%, -50%)
         }
+
         #offerToBuy {
             transform: scale(1.3);
             opacity: 0.9;

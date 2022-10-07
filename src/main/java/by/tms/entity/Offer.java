@@ -3,9 +3,9 @@ package by.tms.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Offer extends Entity {
+public class Offer extends abstractEntity {
     private LocalDateTime offerDateTime;
-    private Product product;
+    private abstractProduct product;
     private String description;
     private BigDecimal price;
     private Store store;
@@ -14,7 +14,7 @@ public class Offer extends Entity {
         this.offerDateTime = LocalDateTime.now();
     }
 
-    public Offer(LocalDateTime offerDateTime, Product product, String description, BigDecimal price, Store store) {
+    public Offer(LocalDateTime offerDateTime, abstractProduct product, String description, BigDecimal price, Store store) {
         this.offerDateTime = offerDateTime;
         this.product = product;
         this.description = description;
@@ -30,11 +30,11 @@ public class Offer extends Entity {
         this.offerDateTime = offerDateTime;
     }
 
-    public Product getProduct() {
+    public abstractProduct getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(abstractProduct product) {
         this.product = product;
     }
 
