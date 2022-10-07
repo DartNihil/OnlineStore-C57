@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -144,5 +145,12 @@ public class OnlineOfferController {
         offerService.saveOffer(offer);
         httpSession.removeAttribute("offer");
         return "redirect:/";
+    }
+    @GetMapping("/deleteOffer")
+    public String deleteOffer(HttpServletRequest req , Model model , HttpSession session) {
+        Long id = Long.valueOf((req.getParameter("id")));
+        offerService.deleteOffer(offerService.findOfferById(id).get());
+        model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
+        return "redirect:/store/storeProfile";
     }
 }
