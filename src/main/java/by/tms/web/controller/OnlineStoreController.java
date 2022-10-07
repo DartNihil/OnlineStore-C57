@@ -24,7 +24,7 @@ public class OnlineStoreController {
     private final StoreService storeService;
     private final CustomerService customerService;
 
-    @Autowired
+
     public OnlineStoreController(StoreService storeService, CustomerService customerService) {
         this.storeService = storeService;
         this.customerService = customerService;
