@@ -1,7 +1,11 @@
 package by.tms.entity;
 
+import by.tms.composite.OfferComposite;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends User {
 
@@ -16,6 +20,8 @@ public class Customer extends User {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Lastname length must be 2 - 16", min = 2, max = 16)
     private String lastname;
+
+    private final List<OfferComposite> cart = new ArrayList<>();
 
     public Customer() {
     }
@@ -49,6 +55,18 @@ public class Customer extends User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public List<OfferComposite> getCart() {
+        return cart;
+    }
+
+    public int getCountOffersInCart() {
+        int count = 0;
+        for (int i = 0; i < cart.size(); i++) {
+            count = count + cart.get(i).getCount();
+        }
+        return count;
     }
 
     @Override
