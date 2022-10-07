@@ -1,12 +1,10 @@
 package by.tms.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
-public class OfferDTO {
+public class OfferDto {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Description length must be more then 2", min = 2)
     private String description;
@@ -14,7 +12,7 @@ public class OfferDTO {
     @Pattern(message = "Prise must be in format ***.**!", regexp = "[\\d]+\\.[\\d]{2}")
     private String price;
 
-    public OfferDTO(String description, String price) {
+    public OfferDto(String description, String price) {
         this.description = description;
         this.price = price;
     }

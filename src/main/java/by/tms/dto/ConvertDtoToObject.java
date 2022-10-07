@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Component
 public class ConvertDtoToObject {
-    public Offer convertOfferDTOtoOffer(OfferDTO offerDTO, Offer offer) {
+    public Offer convertOfferDTOtoOffer(OfferDto offerDTO, Offer offer) {
         offer.setDescription(offerDTO.getDescription());
         offer.setPrice(new BigDecimal(offerDTO.getPrice()));
         return offer;

@@ -1,7 +1,7 @@
 package by.tms.web.controller;
 
 import by.tms.dto.ConvertDtoToObject;
-import by.tms.dto.OfferDTO;
+import by.tms.dto.OfferDto;
 import by.tms.entity.*;
 import by.tms.service.OfferService;
 import by.tms.service.ProductService;
@@ -130,12 +130,12 @@ public class OnlineOfferController {
     }
 
     @GetMapping("/createOffer")
-    public String createOffer(@ModelAttribute("OfferDTO") OfferDTO offerDTO) {
+    public String createOffer(@ModelAttribute("OfferDTO") OfferDto offerDTO) {
         return "storeOffer/createOffer";
     }
 
     @PostMapping("/createOffer")
-    public String createOffer(@Valid @ModelAttribute("OfferDTO") OfferDTO offerDTO, BindingResult bindingResult, HttpSession httpSession) {
+    public String createOffer(@Valid @ModelAttribute("OfferDTO") OfferDto offerDTO, BindingResult bindingResult, HttpSession httpSession) {
         if (bindingResult.hasErrors()) {
             return "storeOffer/createOffer";
         }
