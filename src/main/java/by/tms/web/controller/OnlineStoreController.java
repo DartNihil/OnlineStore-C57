@@ -1,5 +1,6 @@
 package by.tms.web.controller;
 
+import by.tms.dto.MapStoreProfileEditDtoToStore;
 import by.tms.dto.StoreProfileEditDto;
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
@@ -20,11 +21,13 @@ public class OnlineStoreController {
     private final StoreService storeService;
     private final CustomerService customerService;
     private final OfferService offerService;
+    private final MapStoreProfileEditDtoToStore mapStoreProfileEditDtoToStore;
 
-    public OnlineStoreController(StoreService storeService, CustomerService customerService, OfferService offerService) {
+    public OnlineStoreController(StoreService storeService, CustomerService customerService, OfferService offerService, MapStoreProfileEditDtoToStore mapStoreProfileEditDtoToStore) {
         this.storeService = storeService;
         this.customerService = customerService;
         this.offerService = offerService;
+        this.mapStoreProfileEditDtoToStore = mapStoreProfileEditDtoToStore;
     }
 
     @GetMapping("/storeRegistration")
@@ -70,7 +73,7 @@ public class OnlineStoreController {
         if(bindingResult.hasErrors()){
             return "storeProfileEdit";
         }
-        Store newStore = convertDtoToObject.convertStoreProfileEditDTOToStore(storeProfileEditDTO ,
+        Store newStore = mapStoreProfileEditDtoToStore.convertStoreProfileEditDTOToStore(storeProfileEditDTO ,
                 (Store) session.getAttribute("currentUser"));
         session.setAttribute("currentUser" , newStore);
         return "storeProfile";
