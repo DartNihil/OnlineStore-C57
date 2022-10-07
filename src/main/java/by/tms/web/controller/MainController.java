@@ -1,4 +1,5 @@
 package by.tms.web.controller;
+
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
@@ -63,5 +64,11 @@ public class MainController {
             model.addAttribute("message", "No such user");
             return "login";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
     }
 }

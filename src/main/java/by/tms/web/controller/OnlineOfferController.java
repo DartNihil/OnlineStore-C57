@@ -1,5 +1,6 @@
 package by.tms.web.controller;
 
+import by.tms.composite.OfferComposite;
 import by.tms.dto.ConvertDTOToObject;
 import by.tms.dto.OfferDTO;
 import by.tms.entity.*;
@@ -145,4 +146,72 @@ public class OnlineOfferController {
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }
+    @GetMapping("/addOfferToCart")
+    public String addOfferToCart() {
+        return "cartPage";
+    }
+
+    @PostMapping("/addOfferToCart")
+    public String addOfferToCart(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.addOfferToCart(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkoutPage";
+    }
+
+    @PostMapping("/checkout")
+    public String checkout(long offerId, Model model) {
+        Optional<Offer> offerById = offerService.findOfferById(offerId);
+        model.addAttribute("offerToCheckout", offerById.get());
+        return "checkoutPage";
+    }
+
+    @GetMapping("/deleteFromCart")
+    public String deleteFromCart() {
+        return "cartPage";
+    }
+
+    @PostMapping("/deleteFromCart")
+    public String deleteFromCart(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.deleteOfferFromCart(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
+    @GetMapping("/minusOffer")
+    public String minusOffer() {
+        return "cartPage";
+    }
+
+    @PostMapping("/minusOffer")
+    public String minusOffer(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.minusOfferCount(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
+    @GetMapping("/plusOffer")
+    public String plusOffer() {
+        return "cartPage";
+    }
+
+    @PostMapping("/plusOffer")
+    public String plusOffer(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.plusOfferCount(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
 }
