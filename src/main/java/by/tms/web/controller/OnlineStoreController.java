@@ -1,5 +1,6 @@
 package by.tms.web.controller;
 
+import by.tms.dto.StoreProfileEditDto;
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.service.CustomerService;
@@ -61,11 +62,11 @@ public class OnlineStoreController {
         return "storeProfile";
     }
     @GetMapping("/storeProfileEdit")
-    public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDTO storeProfileEditDTO){
+    public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO){
         return "storeProfileEdit";
     }
     @PostMapping("/storeProfileEdit")
-    public String storeProfileEdit(@Valid @ModelAttribute("editedStore") StoreProfileEditDTO storeProfileEditDTO , BindingResult bindingResult , HttpSession session){
+    public String storeProfileEdit(@Valid @ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO , BindingResult bindingResult , HttpSession session){
         if(bindingResult.hasErrors()){
             return "storeProfileEdit";
         }
