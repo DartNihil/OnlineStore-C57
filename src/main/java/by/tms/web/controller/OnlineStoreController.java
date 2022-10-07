@@ -60,4 +60,18 @@ public class OnlineStoreController {
     public String storeProfile() {
         return "storeProfile";
     }
+    @GetMapping("/storeProfileEdit")
+    public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDTO storeProfileEditDTO){
+        return "storeProfileEdit";
+    }
+    @PostMapping("/storeProfileEdit")
+    public String storeProfileEdit(@Valid @ModelAttribute("editedStore") StoreProfileEditDTO storeProfileEditDTO , BindingResult bindingResult , HttpSession session){
+        if(bindingResult.hasErrors()){
+            return "storeProfileEdit";
+        }
+        Store newStore = convertDtoToObject.convertStoreProfileEditDTOToStore(storeProfileEditDTO ,
+                (Store) session.getAttribute("currentUser"));
+        session.setAttribute("currentUser" , newStore);
+        return "storeProfile";
+    }
 }
