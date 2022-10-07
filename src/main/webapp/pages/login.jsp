@@ -16,7 +16,7 @@
     <br>
     <s:errors path="email" cssStyle="color: red"/>
     <br>
-    <s:input path="password" size="50" placeholder="Password"/>
+    <s:input path="password" size="50" type="password" placeholder="Password"/>
     <br>
     <s:errors path="password" cssStyle="color: red"/>
     <br>

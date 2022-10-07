@@ -1,7 +1,6 @@
 package by.tms.web.controller;
 
 import by.tms.dto.ConvertDtoToObject;
-import by.tms.dto.MapStoreProfileEditDtoToStore;
 import by.tms.dto.OfferDto;
 import by.tms.dto.StoreProfileEditDto;
 import by.tms.entity.*;
@@ -166,7 +165,7 @@ public class OnlineOfferController {
         }
         Long id = Long.valueOf(req.getParameter("id"));
         Offer offer = offerService.findOfferById(id).get();
-        Offer newOffer = convertDTOToObject.convertOfferEditDTOToOffer(storeProfileEditDto , offer);
+      //  Offer newOffer = convertDTOToObject.convertOfferEditDTOToOffer(storeProfileEditDto , offer);
         model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
         return "redirect:/store/storeProfile";
     }

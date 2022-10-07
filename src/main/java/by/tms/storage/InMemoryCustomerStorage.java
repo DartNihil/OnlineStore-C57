@@ -1,7 +1,6 @@
 package by.tms.storage;
 
 import by.tms.entity.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -31,6 +30,12 @@ public class InMemoryCustomerStorage implements Storage<Customer, Long> {
             }
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Customer delete(Customer entity) {
+        customerList.remove(entity);
+        return entity;
     }
 
     @Override
