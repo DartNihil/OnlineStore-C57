@@ -1,9 +1,11 @@
 package by.tms.dto;
 
 import by.tms.entity.Store;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MapStoreProfileEditDtoToStore {
-    public Store convertStoreProfileEditDTOToStore(StoreProfileEditDto storeProfileEditDTO, Store store) {
+    public Store convertStoreProfileEditDtoToStore(StoreProfileEditDto storeProfileEditDTO, Store store) {
         store.setStoreName(storeProfileEditDTO.getStoreName());
         store.setStorePhoneNumber(storeProfileEditDTO.getStorePhoneNumber());
         store.setStoreAddress(storeProfileEditDTO.getStoreAddress());
