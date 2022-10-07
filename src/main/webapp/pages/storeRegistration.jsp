@@ -15,7 +15,6 @@
 <h2>Register your store in OnlineStore!</h2>
 <br>
 <s:form action="/store/storeRegistration" method="post" modelAttribute="newStore">
-    <p style="color: red">${message}</p>
     <p>Enter your e-mail:</p>
     <s:input path="email" size="30" placeholder="e-mail"/>
     <br>
@@ -42,10 +41,10 @@
     <s:errors path="storeOpeningHours"/>
     <br>
     <p>Choose product categories you want to sell:</p>
-    <s:checkbox path="productCategories" value="SmartPhone"/>SmartPhone<br/>
+    <s:checkbox path="productCategories" value="Smartphone"/>Smartphone<br/>
     <s:checkbox path="productCategories" value="Notebook"/>Notebook<br/>
     <s:checkbox path="productCategories" value="ElectronicBook"/>ElectronicBook<br/>
-    <s:checkbox path="productCategories" value="SmartWatch"/>SmartWatch<br/>
+    <s:checkbox path="productCategories" value="Smartwatch"/>Smartwatch<br/>
     <s:checkbox path="productCategories" value="Tablet"/>Tablet<br/>
     <br>
     <p>Choose possible payment methods:</p>

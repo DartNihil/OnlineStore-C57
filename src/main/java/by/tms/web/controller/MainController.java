@@ -1,5 +1,4 @@
 package by.tms.web.controller;
-
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
@@ -21,7 +20,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/")
 public class MainController {
-
     private final StoreService storeService;
 
     private final CustomerService customerService;
@@ -47,7 +45,7 @@ public class MainController {
         Optional<Customer> customer = customerService.findCustomerByEmail(user.getEmail());
         if (store.isPresent()) {
             if (store.get().getPassword().equals(user.getPassword())) {
-                session.setAttribute("currentUser", store);
+                session.setAttribute("currentUser", store.get());
                 return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");
@@ -55,7 +53,7 @@ public class MainController {
             }
         } else if (customer.isPresent()) {
             if (customer.get().getPassword().equals(user.getPassword())) {
-                session.setAttribute("currentUser", customer);
+                session.setAttribute("currentUser", customer.get());
                 return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");
