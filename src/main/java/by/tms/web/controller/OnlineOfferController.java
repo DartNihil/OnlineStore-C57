@@ -153,4 +153,19 @@ public class OnlineOfferController {
         model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
         return "redirect:/store/storeProfile";
     }
+    @GetMapping("/editOffer")
+    public String editOffer(@ModelAttribute("editedOffer")OfferEditDTO offerEditDTO){
+        return "editOffer";
+    }
+    @PostMapping("/editOffer")
+    public String editOffer(@Valid @ModelAttribute("editedOffer") OfferEditDTO offerEditDTO , BindingResult bindingResult, HttpSession session , Model model , HttpServletRequest req){
+        if(bindingResult.hasErrors()){
+            return "editOffer";
+        }
+        Long id = Long.valueOf(req.getParameter("id"));
+        Offer offer = offerService.findOfferById(id).get();
+        Offer newOffer = convertDTOToObject.convertOfferEditDTOToOffer(offerEditDTO , offer);
+        model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
+        return "redirect:/store/storeProfile";
+    }
 }
