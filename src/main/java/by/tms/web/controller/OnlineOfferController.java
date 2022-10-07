@@ -1,11 +1,10 @@
 package by.tms.web.controller;
 
-import by.tms.dto.ConvertDTOToObject;
+import by.tms.dto.ConvertDtoToObject;
 import by.tms.dto.OfferDTO;
 import by.tms.entity.*;
 import by.tms.service.OfferService;
 import by.tms.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,12 +22,15 @@ import java.util.Optional;
 @RequestMapping("/offer")
 public class OnlineOfferController {
 
-    @Autowired
-    private OfferService offerService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private ConvertDTOToObject convertDTOToObject;
+    private final OfferService offerService;
+    private final ProductService productService;
+    private final ConvertDtoToObject convertDTOToObject;
+
+    public OnlineOfferController(OfferService offerService, ProductService productService, ConvertDtoToObject convertDTOToObject) {
+        this.offerService = offerService;
+        this.productService = productService;
+        this.convertDTOToObject = convertDTOToObject;
+    }
 
     @GetMapping("/selectProductCategory")
     public String selectProductCategory() {
@@ -37,7 +39,7 @@ public class OnlineOfferController {
 
     @PostMapping("/selectProductCategory")
     public String selectProductCategory(String productCategory, Model model) {
-        List<Product> productList = productService.getProductListForStoreOffer(productCategory);
+        List<AbstractProduct> productList = productService.getProductListForStoreOffer(productCategory);
         model.addAttribute("productList", productList);
         return productService.getPageNameForProduct(productCategory);
     }
@@ -49,8 +51,8 @@ public class OnlineOfferController {
 
     @PostMapping("/addSmartphone")
     public String addSmartphone(Long id, Smartphone newSmartphone, HttpSession httpSession) {
-        Optional<Product> smartphoneInBase = productService.findProductById(id);
-        if(smartphoneInBase.isPresent()) {
+        Optional<AbstractProduct> smartphoneInBase = productService.findProductById(id);
+        if (smartphoneInBase.isPresent()) {
             newSmartphone = (Smartphone) smartphoneInBase.get();
         }
         Store store = (Store) httpSession.getAttribute("currentUser");
@@ -66,8 +68,8 @@ public class OnlineOfferController {
 
     @PostMapping("/addElectronicBook")
     public String addElectronicBook(Long id, ElectronicBook newElectronicBook, HttpSession httpSession) {
-        Optional<Product> electronicBookInBase = productService.findProductById(id);
-        if(electronicBookInBase.isPresent()) {
+        Optional<AbstractProduct> electronicBookInBase = productService.findProductById(id);
+        if (electronicBookInBase.isPresent()) {
             newElectronicBook = (ElectronicBook) electronicBookInBase.get();
         }
         Store store = (Store) httpSession.getAttribute("currentUser");
@@ -83,8 +85,8 @@ public class OnlineOfferController {
 
     @PostMapping("/addNotebook")
     public String addNotebook(Long id, Notebook newNotebook, HttpSession httpSession) {
-        Optional<Product> notebookInBase = productService.findProductById(id);
-        if(notebookInBase.isPresent()) {
+        Optional<AbstractProduct> notebookInBase = productService.findProductById(id);
+        if (notebookInBase.isPresent()) {
             newNotebook = (Notebook) notebookInBase.get();
         }
         Store store = (Store) httpSession.getAttribute("currentUser");
@@ -100,8 +102,8 @@ public class OnlineOfferController {
 
     @PostMapping("/addSmartwatch")
     public String addSmartwatch(Long id, Smartwatch newSmartwatch, HttpSession httpSession) {
-        Optional<Product> smartwatchInBase = productService.findProductById(id);
-        if(smartwatchInBase.isPresent()) {
+        Optional<AbstractProduct> smartwatchInBase = productService.findProductById(id);
+        if (smartwatchInBase.isPresent()) {
             newSmartwatch = (Smartwatch) smartwatchInBase.get();
         }
         Store store = (Store) httpSession.getAttribute("currentUser");
@@ -117,8 +119,8 @@ public class OnlineOfferController {
 
     @PostMapping("/addTablet")
     public String addTablet(Long id, Tablet newTablet, HttpSession httpSession) {
-        Optional<Product> tabletInBase = productService.findProductById(id);
-        if(tabletInBase.isPresent()) {
+        Optional<AbstractProduct> tabletInBase = productService.findProductById(id);
+        if (tabletInBase.isPresent()) {
             newTablet = (Tablet) tabletInBase.get();
         }
         Store store = (Store) httpSession.getAttribute("currentUser");

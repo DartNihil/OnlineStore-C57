@@ -15,8 +15,11 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-    @Autowired
-    ProductService productService;
+    private final ProductService productService;
+
+    public AdminController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/addSmartphone")
     public String addSmartphone(@ModelAttribute("newSmartphone") Smartphone newSmartphone) {

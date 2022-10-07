@@ -1,4 +1,5 @@
 package by.tms.web.controller;
+
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
@@ -21,10 +22,8 @@ import java.util.Optional;
 @RequestMapping("/")
 public class MainController {
     private final StoreService storeService;
-
     private final CustomerService customerService;
 
-    @Autowired
     public MainController(StoreService storeService, CustomerService customerService) {
         this.storeService = storeService;
         this.customerService = customerService;

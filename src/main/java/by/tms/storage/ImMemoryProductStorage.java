@@ -1,7 +1,6 @@
 package by.tms.storage;
 
-import by.tms.entity.Customer;
-import by.tms.entity.Product;
+import by.tms.entity.AbstractProduct;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,21 +9,21 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component("inMemoryProductStorage")
-public class ImMemoryProductStorage implements Storage<Product, Long> {
-    private final List<Product> productList = new ArrayList<>();
+public class ImMemoryProductStorage implements Storage<AbstractProduct, Long> {
+    private final List<AbstractProduct> productList = new ArrayList<>();
 
     private final AtomicLong productIdGenerator = new AtomicLong(0);
 
     @Override
-    public Product save(Product entity) {
+    public AbstractProduct save(AbstractProduct entity) {
         entity.setId(productIdGenerator.incrementAndGet());
         productList.add(entity);
         return null;
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
-        for (Product product : productList) {
+    public Optional<AbstractProduct> findById(Long id) {
+        for (AbstractProduct product : productList) {
             if (product.getId() == id) {
                 return Optional.of(product);
             }
@@ -33,13 +32,13 @@ public class ImMemoryProductStorage implements Storage<Product, Long> {
     }
 
     @Override
-    public List<Product> getListOfEntity() {
+    public List<AbstractProduct> getListOfEntity() {
         return productList;
     }
 
     @Override
-    public Optional<Product> findEntity(String producer) {
-        for (Product product : productList) {
+    public Optional<AbstractProduct> findEntity(String producer) {
+        for (AbstractProduct product : productList) {
             if (product.getProducer().equals(producer)) {
                 return Optional.of(product);
             }

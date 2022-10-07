@@ -3,7 +3,6 @@ package by.tms.web.controller;
 import by.tms.entity.Customer;
 import by.tms.service.CustomerService;
 import by.tms.service.StoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,17 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-    @Controller
-    @RequestMapping("/customer")
-    public class OnlineCustomerController {
-        @Autowired
-        private CustomerService customerService;
+@Controller
+@RequestMapping("/customer")
+public class OnlineCustomerController {
 
     private final CustomerService customerService;
-
     private final StoreService storeService;
 
-    @Autowired
     public OnlineCustomerController(CustomerService customerService, StoreService storeService) {
         this.customerService = customerService;
         this.storeService = storeService;

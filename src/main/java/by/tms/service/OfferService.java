@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class OfferService {
     @Autowired
@@ -20,7 +17,7 @@ public class OfferService {
         return offer;
     }
 
-    public Offer createOfferWithStoreAndProductCategory(Store store, Product product) {
+    public Offer createOfferWithStoreAndProductCategory(Store store, AbstractProduct product) {
         Offer offer = new Offer();
         offer.setStore(store);
         offer.setProduct(product);
