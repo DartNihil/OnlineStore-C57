@@ -13,25 +13,25 @@
     <p>Change name of your store:</p>
     <s:input path="storeName" size="30" placeholder="Store name"/>
     <br>
-    <s:errors path="storeName"/>
+    <s:errors path="storeName" cssStyle="color: red"/>
     <p>Change address of your store:</p>
     <s:input path="storeAddress" size="30" placeholder="Store address"/>
     <br>
-    <s:errors path="storeAddress"/>
+    <s:errors path="storeAddress" cssStyle="color: red"/>
     <p>Change phone number of your store with +375:</p>
     <s:input path="storePhoneNumber" size="30" placeholder="Store phone number"/>
     <br>
-    <s:errors path="storePhoneNumber"/>
+    <s:errors path="storePhoneNumber" cssStyle="color: red"/>
     <p>Change opening hours of your store:</p>
     <s:input path="storeOpeningHours" size="30" placeholder="Store opening hours"/>
     <br>
-    <s:errors path="storeOpeningHours"/>
+    <s:errors path="storeOpeningHours" cssStyle="color: red"/>
     <br>
     <p>Change product categories you want to sell:</p>
-    <s:checkbox path="productCategories" value="SmartPhone"/>SmartPhone<br/>
+    <s:checkbox path="productCategories" value="Smartphone"/>Smartphone<br/>
     <s:checkbox path="productCategories" value="Notebook"/>Notebook<br/>
     <s:checkbox path="productCategories" value="ElectronicBook"/>ElectronicBook<br/>
-    <s:checkbox path="productCategories" value="SmartWatch"/>SmartWatch<br/>
+    <s:checkbox path="productCategories" value="Smartwatch"/>Smartwatch<br/>
     <s:checkbox path="productCategories" value="Tablet"/>Tablet<br/>
     <br>
     <p>Change possible payment methods:</p>

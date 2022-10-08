@@ -2,7 +2,6 @@ package by.tms.web.controller;
 
 import by.tms.dto.ConvertDtoToObject;
 import by.tms.dto.OfferDto;
-import by.tms.dto.StoreProfileEditDto;
 import by.tms.entity.*;
 import by.tms.service.OfferService;
 import by.tms.service.ProductService;
@@ -147,26 +146,34 @@ public class OnlineOfferController {
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }
+
     @GetMapping("/deleteOffer")
-    public String deleteOffer(HttpServletRequest req , Model model , HttpSession session) {
-        Long id = Long.valueOf((req.getParameter("id")));
+    public String deleteOffer(HttpServletRequest req, Model model, HttpSession session) {
+        System.out.println((req.getParameter("id")));
+        long id = Long.parseLong((req.getParameter("id")));
         offerService.deleteOffer(offerService.findOfferById(id).get());
-        model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
+        model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
         return "redirect:/store/storeProfile";
     }
+
     @GetMapping("/editOffer")
-    public String editOffer(@ModelAttribute("editedOffer") StoreProfileEditDto storeProfileEditDto){
+    public String editOffer(@ModelAttribute("editedOffer") OfferDto offerDto , HttpServletRequest req , Model model) {
+        System.out.println(req.getParameter("id"));
+        model.addAttribute("id" , req.getParameter("id"));
         return "editOffer";
     }
+
     @PostMapping("/editOffer")
-    public String editOffer(@Valid @ModelAttribute("editedOffer") StoreProfileEditDto storeProfileEditDto , BindingResult bindingResult, HttpSession session , Model model , HttpServletRequest req){
-        if(bindingResult.hasErrors()){
+    public String editOffer(@Valid @ModelAttribute("editedOffer") OfferDto offerDto, BindingResult bindingResult, HttpSession session, Model model, HttpServletRequest req) {
+        if (bindingResult.hasErrors()) {
             return "editOffer";
         }
-        Long id = Long.valueOf(req.getParameter("id"));
+        System.out.println(req.getParameter("id"));
+
+        long id = Long.parseLong(req.getParameter("id"));
         Offer offer = offerService.findOfferById(id).get();
-      //  Offer newOffer = convertDTOToObject.convertOfferEditDTOToOffer(storeProfileEditDto , offer);
-        model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
+        convertDTOToObject.convertOfferDTOtoOffer(offerDto, offer);
+        model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
         return "redirect:/store/storeProfile";
     }
 }

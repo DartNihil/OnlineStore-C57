@@ -30,7 +30,7 @@
                 Offer id = ${offer.id} , Description = ${offer.description}</button>
         </form>
 
-        <form action="/offer/editOffer" method="post"> <!-- offerEdit page  -->
+        <form action="/offer/editOffer" method="get"> <!-- offerEdit page  -->
             <button name="id" value="${offer.id}">Edit offer</button>
         </form>
 
