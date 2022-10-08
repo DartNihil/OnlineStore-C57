@@ -149,7 +149,6 @@ public class OnlineOfferController {
 
     @GetMapping("/deleteOffer")
     public String deleteOffer(HttpServletRequest req, Model model, HttpSession session) {
-        System.out.println((req.getParameter("id")));
         long id = Long.parseLong((req.getParameter("id")));
         offerService.deleteOffer(offerService.findOfferById(id).get());
         model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
@@ -158,7 +157,6 @@ public class OnlineOfferController {
 
     @GetMapping("/editOffer")
     public String editOffer(@ModelAttribute("editedOffer") OfferDto offerDto , HttpServletRequest req , Model model) {
-        System.out.println(req.getParameter("id"));
         model.addAttribute("id" , req.getParameter("id"));
         return "editOffer";
     }
@@ -168,8 +166,6 @@ public class OnlineOfferController {
         if (bindingResult.hasErrors()) {
             return "editOffer";
         }
-        System.out.println(req.getParameter("id"));
-
         long id = Long.parseLong(req.getParameter("id"));
         Offer offer = offerService.findOfferById(id).get();
         convertDTOToObject.convertOfferDTOtoOffer(offerDto, offer);

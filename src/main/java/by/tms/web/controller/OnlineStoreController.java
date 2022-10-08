@@ -57,7 +57,7 @@ public class OnlineStoreController {
             model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
             return "storeProfile";
         }
-        return "redirect:/login";
+        return "redirect:/user/login";
     }
 
     @PostMapping("/storeProfile")

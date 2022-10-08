@@ -18,6 +18,9 @@
 <h3>Product categories you sell : ${sessionScope.currentUser.productCategories}</h3>
 <h3><a href="/store/storeProfileEdit">Edit profile info</a></h3>
 <br>
+<a href="/user/logout">Logout</a>
+<br>
+<br>
 <a href="/pages/storeOffer/selectProductCategory.jsp">Create new offer</a>
 <a href="/">Back to homepage</a>
 
