@@ -49,20 +49,20 @@ public class OnlineStoreController {
             return "storeRegistration";
         }
     }
-    @GetMapping("/storeProfile")
+    @GetMapping("/currentStoreProfile")
     public String storeProfile(HttpSession session, Model model) {
         if (session.getAttribute("currentUser") instanceof Customer) {
             return "redirect:/"; //should return "customer/customerProfile"
         } else if (session.getAttribute("currentUser") instanceof Store) {
             model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
-            return "storeProfile";
+            return "currentStoreProfile";
         }
         return "redirect:/user/login";
     }
 
-    @PostMapping("/storeProfile")
+    @PostMapping("/currentStoreProfile")
     public String storeProfile() {
-        return "storeProfile";
+        return "currentStoreProfile";
     }
     @GetMapping("/storeProfileEdit")
     public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO){
@@ -76,6 +76,6 @@ public class OnlineStoreController {
         Store newStore = mapStoreProfileEditDtoToStore.convertStoreProfileEditDtoToStore(storeProfileEditDTO ,
                 (Store) session.getAttribute("currentUser"));
         session.setAttribute("currentUser" , newStore);
-        return "storeProfile";
+        return "currentStoreProfile";
     }
 }

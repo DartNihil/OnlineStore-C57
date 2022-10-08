@@ -152,7 +152,7 @@ public class OnlineOfferController {
         long id = Long.parseLong((req.getParameter("id")));
         offerService.deleteOffer(offerService.findOfferById(id).get());
         model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
-        return "redirect:/store/storeProfile";
+        return "redirect:/store/currentStoreProfile";
     }
 
     @GetMapping("/editOffer")
@@ -170,6 +170,6 @@ public class OnlineOfferController {
         Offer offer = offerService.findOfferById(id).get();
         convertDTOToObject.convertOfferDTOtoOffer(offerDto, offer);
         model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
-        return "redirect:/store/storeProfile";
+        return "redirect:/store/currentStoreProfile";
     }
 }
