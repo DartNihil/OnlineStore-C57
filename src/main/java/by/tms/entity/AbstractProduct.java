@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public abstract class abstractProduct extends abstractEntity {
+public abstract class AbstractProduct extends AbstractEntity {
     @NotBlank(message = "Field must not be empty")
     @Pattern(message = "Must be src link", regexp = "https:.+\\.[\\w]{3,4}")
     private String srcPicture;
@@ -34,10 +34,10 @@ public abstract class abstractProduct extends abstractEntity {
     @Size(message = "Battery capacity length must be more then 2", min = 2)
     private String batteryCapacity;
 
-    public abstractProduct() {
+    public AbstractProduct() {
     }
 
-    public abstractProduct(String srcPicture, String productName, String producer, String releaseDate, String screenSize, String color, String operatingSystem,
+    public AbstractProduct(String srcPicture, String productName, String producer, String releaseDate, String screenSize, String color, String operatingSystem,
                            String batteryCapacity) {
         this.srcPicture = srcPicture;
         this.productName = productName;

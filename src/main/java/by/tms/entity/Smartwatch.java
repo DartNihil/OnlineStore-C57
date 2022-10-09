@@ -3,7 +3,7 @@ package by.tms.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class Smartwatch extends abstractProduct {
+public class Smartwatch extends AbstractProduct {
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Bracelet material length must be more then 2", min = 2)
     private String braceletMaterial;

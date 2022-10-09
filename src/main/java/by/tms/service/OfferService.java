@@ -22,7 +22,7 @@ public class OfferService {
         return offer;
     }
 
-    public Offer createOfferWithStoreAndProductCategory(Store store, abstractProduct product) {
+    public Offer createOfferWithStoreAndProductCategory(Store store, AbstractProduct product) {
         Offer offer = new Offer();
         offer.setStore(store);
         offer.setProduct(product);

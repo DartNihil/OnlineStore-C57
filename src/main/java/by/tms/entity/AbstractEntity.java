@@ -1,12 +1,12 @@
 package by.tms.entity;
 
-public abstract class abstractEntity {
+public abstract class AbstractEntity {
     private long id;
 
-    public abstractEntity() {
+    public AbstractEntity() {
     }
 
-    public abstractEntity(long id) {
+    public AbstractEntity(long id) {
         this.id = id;
     }
 

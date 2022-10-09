@@ -39,7 +39,7 @@ public class OnlineOfferController {
 
     @PostMapping("/selectProductCategory")
     public String selectProductCategory(String productCategory, Model model) {
-        List<abstractProduct> productList = productService.getProductListForStoreOffer(productCategory);
+        List<AbstractProduct> productList = productService.getProductListForStoreOffer(productCategory);
         model.addAttribute("productList", productList);
         return productService.getPageNameForProduct(productCategory);
     }
@@ -51,7 +51,7 @@ public class OnlineOfferController {
 
     @PostMapping("/addSmartphone")
     public String addSmartphone(Long id, Smartphone newSmartphone, HttpSession httpSession) {
-        Optional<abstractProduct> smartphoneInBase = productService.findProductById(id);
+        Optional<AbstractProduct> smartphoneInBase = productService.findProductById(id);
         if (smartphoneInBase.isPresent()) {
             newSmartphone = (Smartphone) smartphoneInBase.get();
         }
@@ -68,7 +68,7 @@ public class OnlineOfferController {
 
     @PostMapping("/addElectronicBook")
     public String addElectronicBook(Long id, ElectronicBook newElectronicBook, HttpSession httpSession) {
-        Optional<abstractProduct> electronicBookInBase = productService.findProductById(id);
+        Optional<AbstractProduct> electronicBookInBase = productService.findProductById(id);
         if (electronicBookInBase.isPresent()) {
             newElectronicBook = (ElectronicBook) electronicBookInBase.get();
         }
@@ -85,7 +85,7 @@ public class OnlineOfferController {
 
     @PostMapping("/addNotebook")
     public String addNotebook(Long id, Notebook newNotebook, HttpSession httpSession) {
-        Optional<abstractProduct> notebookInBase = productService.findProductById(id);
+        Optional<AbstractProduct> notebookInBase = productService.findProductById(id);
         if (notebookInBase.isPresent()) {
             newNotebook = (Notebook) notebookInBase.get();
         }
@@ -102,7 +102,7 @@ public class OnlineOfferController {
 
     @PostMapping("/addSmartwatch")
     public String addSmartwatch(Long id, Smartwatch newSmartwatch, HttpSession httpSession) {
-        Optional<abstractProduct> smartwatchInBase = productService.findProductById(id);
+        Optional<AbstractProduct> smartwatchInBase = productService.findProductById(id);
         if (smartwatchInBase.isPresent()) {
             newSmartwatch = (Smartwatch) smartwatchInBase.get();
         }
@@ -119,7 +119,7 @@ public class OnlineOfferController {
 
     @PostMapping("/addTablet")
     public String addTablet(Long id, Tablet newTablet, HttpSession httpSession) {
-        Optional<abstractProduct> tabletInBase = productService.findProductById(id);
+        Optional<AbstractProduct> tabletInBase = productService.findProductById(id);
         if (tabletInBase.isPresent()) {
             newTablet = (Tablet) tabletInBase.get();
         }
