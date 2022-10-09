@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class OfferService {
@@ -20,10 +20,21 @@ public class OfferService {
         return offer;
     }
 
-    public Offer createOfferWithStoreAndProductCategory(Store store, Product product) {
+    public Offer createOfferWithStoreAndProductCategory(Store store, AbstractProduct product) {
         Offer offer = new Offer();
         offer.setStore(store);
         offer.setProduct(product);
         return offer;
+    }
+    public List<Offer> findOffersByStore(Store store) {
+        return offerStorage.getListOfEntity().stream().filter(offer -> offer.getStore().equals(store)).toList();
+    }
+
+    public Offer deleteOffer(Offer offer){
+        offerStorage.delete(offer);
+        return offer;
+    }
+    public Optional<Offer> findOfferById(long id){
+        return offerStorage.getListOfEntity().stream().filter(offer -> offer.getId() == id).findFirst();
     }
 }
