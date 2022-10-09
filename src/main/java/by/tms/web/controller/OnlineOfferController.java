@@ -39,7 +39,7 @@ public class OnlineOfferController {
     public String selectProductCategory(String productCategory, Model model) {
         List<Product> productList = productService.getProductListForStoreOffer(productCategory);
         model.addAttribute("productList", productList);
-        return productService.getPageNameForProduct(productCategory);
+        return productService.getPageNameForProductToOffer(productCategory);
     }
 
     @GetMapping("/addSmartphone")

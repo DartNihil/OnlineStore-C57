@@ -7,7 +7,7 @@
 <body>
 <h2>Step 2: Enter smartphone's specifications!</h2>
 <br>
-<s:form action="/store/addSmartphone" method="post" modelAttribute="newSmartphone">
+<s:form action="/admin/addSmartphone" method="post" modelAttribute="newSmartphone">
     <p>Add a link to your product image:</p>
     <s:input path="srcPicture" size="30" placeholder="srcPicture"/>
     <br>
@@ -44,11 +44,10 @@
     <s:errors path="batteryCapacity"/>
     <br>
     <p>Enter simCard format of your product:</p>
-        <s:input path="simCardFormat" size="30" placeholder="simCard format"/>
-        <br>
-        <s:errors path="simCardFormat"/>
-        <br>
-
+    <s:input path="simCardFormat" size="30" placeholder="simCard format"/>
+    <br>
+    <s:errors path="simCardFormat"/>
+    <br>
     <s:button>Submit</s:button>
 </s:form>
 </body>

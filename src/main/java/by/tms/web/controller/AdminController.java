@@ -4,6 +4,7 @@ import by.tms.entity.*;
 import by.tms.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,12 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
     ProductService productService;
+
+    @GetMapping("/selectProductCategory")
+    public String selectProductCategory() {
+        return "admin/selectProductCategoryByAdmin";
+    }
+
+    @PostMapping("/selectProductCategory")
+    public String selectProductCategory(String productCategory) {
+
+        return productService.getPageNameForProductToAdmin(productCategory);
+    }
 
     @GetMapping("/addSmartphone")
     public String addSmartphone(@ModelAttribute("newSmartphone") Smartphone newSmartphone) {

@@ -17,14 +17,12 @@ import javax.validation.Valid;
     @Controller
     @RequestMapping("/customer")
     public class OnlineCustomerController {
-        @Autowired
-        private CustomerService customerService;
 
     private final CustomerService customerService;
 
     private final StoreService storeService;
 
-    @Autowired
+
     public OnlineCustomerController(CustomerService customerService, StoreService storeService) {
         this.customerService = customerService;
         this.storeService = storeService;

@@ -7,7 +7,7 @@
 <body>
 <h2>Step 2: Enter smartphone's specifications!</h2>
 <br>
-<s:form action="/store/addTablet" method="post" modelAttribute="newTablet">
+<s:form action="/admin/addTablet" method="post" modelAttribute="newTablet">
     <p>Add a link to your product image:</p>
     <s:input path="srcPicture" size="30" placeholder="srcPicture"/>
     <br>
