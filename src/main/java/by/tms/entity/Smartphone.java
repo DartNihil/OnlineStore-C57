@@ -3,9 +3,8 @@ package by.tms.entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class Smartphone extends Product {
-    @NotBlank(message = "Field must not be empty")
-    @Size(message = "Sim card format length must be more then 2", min = 2)
+@NotBlank(message = "Field must not be empty")
+@Size(message = "Sim card format length must be more then 2", min = 2)
 public class Smartphone extends Product {
     private String simCardFormat;
 

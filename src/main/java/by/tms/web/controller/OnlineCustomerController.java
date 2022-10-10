@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-    @Controller
-    @RequestMapping("/customer")
-    public class OnlineCustomerController {
-        @Autowired
-        private CustomerService customerService;
-
-    private final CustomerService customerService;
+@Controller
+@RequestMapping("/customer")
+public class OnlineCustomerController {
+    @Autowired
+    private CustomerService customerService;
 
     private final StoreService storeService;
 
