@@ -24,7 +24,7 @@ public class Smartphone extends AbstractProduct {
     public void setSimCardFormat(String simCardFormat) {
         this.simCardFormat = simCardFormat;
     }
-    
+
     @Override
     public String toString() {
         return "Smartphone{" +

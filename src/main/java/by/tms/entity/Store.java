@@ -1,7 +1,6 @@
 package by.tms.entity;
 
 import javax.validation.constraints.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends User {
@@ -24,11 +23,14 @@ public class Store extends User {
     @NotNull
     @Size(min = 1, max = 3)
     private List<String> paymentMethods;
+    @NotNull
+    @Size(min = 1, max = 3)
+    private List<String> deliveryMethods;
 
     public Store() {
     }
 
-    public Store(long id, String email, String password, String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours, List<String> productCategories, List<String> paymentMethods) {
+    public Store(long id, String email, String password, String storeName, String storePhoneNumber, String storeAddress, String storeOpeningHours, List<String> productCategories, List<String> paymentMethods, List<String> deliveryMethods) {
         super(id, email, password);
         this.storeName = storeName;
         this.storePhoneNumber = storePhoneNumber;
@@ -36,6 +38,7 @@ public class Store extends User {
         this.storeOpeningHours = storeOpeningHours;
         this.productCategories = productCategories;
         this.paymentMethods = paymentMethods;
+        this.deliveryMethods = deliveryMethods;
     }
 
     public String getStoreName() {
@@ -86,6 +89,14 @@ public class Store extends User {
         this.productCategories = productCategories;
     }
 
+    public List<String> getDeliveryMethods() {
+        return deliveryMethods;
+    }
+
+    public void setDeliveryMethods(List<String> deliveryMethods) {
+        this.deliveryMethods = deliveryMethods;
+    }
+
     @Override
     public String toString() {
         return "Store{" +
@@ -95,6 +106,7 @@ public class Store extends User {
                 ", storeOpeningHours='" + storeOpeningHours + '\'' +
                 ", productCategories=" + productCategories +
                 ", paymentMethods=" + paymentMethods +
+                ", deliveryMethods=" + deliveryMethods +
                 ", email='" + this.getEmail() + '\'' +
                 ", password='" + this.getPassword() + '\'' +
                 ", id='" + this.getId() + '\'' +

@@ -7,7 +7,6 @@ public class ElectronicBook extends AbstractProduct {
 
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Text format length must be more then 2", min = 2)
-
     private String textFormat;
 
     public ElectronicBook() {

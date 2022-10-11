@@ -45,6 +45,4 @@ public class ImMemoryProductStorage implements Storage<AbstractProduct, Long> {
         }
         return Optional.empty();
     }
-
-
 }

@@ -27,6 +27,7 @@ public class ProductService {
         return productStorage.findById(id);
     }
     public List<AbstractProduct> getProductListForStoreOffer(String productCategory) {
+
         if(productStorage.getListOfEntity().isEmpty()) {
             fillProductListToTest();
         }

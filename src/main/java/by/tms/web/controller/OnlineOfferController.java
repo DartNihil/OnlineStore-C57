@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -145,6 +146,7 @@ public class OnlineOfferController {
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }
+  
     @GetMapping("/addOfferToCart")
     public String addOfferToCart() {
         return "cartPage";
@@ -212,5 +214,4 @@ public class OnlineOfferController {
         model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
         return "cartPage";
     }
-
 }

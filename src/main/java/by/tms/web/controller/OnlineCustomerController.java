@@ -5,7 +5,6 @@ import by.tms.entity.Customer;
 import by.tms.service.CustomerService;
 import by.tms.service.OfferService;
 import by.tms.service.StoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +20,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class OnlineCustomerController {
+
     private final CustomerService customerService;
     private final StoreService storeService;
     private final OfferService offerService;

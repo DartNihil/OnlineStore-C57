@@ -28,6 +28,7 @@ public class OfferService {
         offer.setProduct(product);
         return offer;
     }
+  
     public Optional<Offer> findOfferById(long id) {
         return offerStorage.findById(id);
     }
