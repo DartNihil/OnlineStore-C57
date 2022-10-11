@@ -1,4 +1,5 @@
 package by.tms.web.controller;
+
 import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.entity.User;
@@ -28,6 +29,11 @@ public class MainController {
     public MainController(StoreService storeService, CustomerService customerService) {
         this.storeService = storeService;
         this.customerService = customerService;
+    }
+
+    @PostMapping
+    public String homepageSearch(String searchProduct, Model model) {
+        return "redirect: /search";
     }
 
     @GetMapping("/login")
