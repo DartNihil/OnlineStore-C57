@@ -1,5 +1,6 @@
 package by.tms.web.controller;
 
+import by.tms.composite.OfferComposite;
 import by.tms.dto.ConvertDtoToObject;
 import by.tms.dto.OfferDto;
 import by.tms.entity.*;
@@ -22,7 +23,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/offer")
 public class OnlineOfferController {
-
     private final OfferService offerService;
     private final ProductService productService;
     private final ConvertDtoToObject convertDTOToObject;
@@ -146,30 +146,72 @@ public class OnlineOfferController {
         httpSession.removeAttribute("offer");
         return "redirect:/";
     }
-
-    @GetMapping("/deleteOffer")
-    public String deleteOffer(HttpServletRequest req, Model model, HttpSession session) {
-        long id = Long.parseLong((req.getParameter("id")));
-        offerService.deleteOffer(offerService.findOfferById(id).get());
-        model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
-        return "redirect:/store/currentStoreProfile";
+  
+    @GetMapping("/addOfferToCart")
+    public String addOfferToCart() {
+        return "cartPage";
     }
 
-    @GetMapping("/editOffer")
-    public String editOffer(@ModelAttribute("editedOffer") OfferDto offerDto , HttpServletRequest req , Model model) {
-        model.addAttribute("id" , req.getParameter("id"));
-        return "editOffer";
+    @PostMapping("/addOfferToCart")
+    public String addOfferToCart(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.addOfferToCart(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
     }
 
-    @PostMapping("/editOffer")
-    public String editOffer(@Valid @ModelAttribute("editedOffer") OfferDto offerDto, BindingResult bindingResult, HttpSession session, Model model, HttpServletRequest req) {
-        if (bindingResult.hasErrors()) {
-            return "editOffer";
-        }
-        long id = Long.parseLong(req.getParameter("id"));
-        Offer offer = offerService.findOfferById(id).get();
-        convertDTOToObject.convertOfferDTOtoOffer(offerDto, offer);
-        model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
-        return "redirect:/store/currentStoreProfile";
+    @GetMapping("/checkout")
+    public String checkout() {
+        return "checkoutPage";
+    }
+
+    @PostMapping("/checkout")
+    public String checkout(long offerId, Model model) {
+        Optional<Offer> offerById = offerService.findOfferById(offerId);
+        model.addAttribute("offerToCheckout", offerById.get());
+        return "checkoutPage";
+    }
+
+    @GetMapping("/deleteFromCart")
+    public String deleteFromCart() {
+        return "cartPage";
+    }
+
+    @PostMapping("/deleteFromCart")
+    public String deleteFromCart(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.deleteOfferFromCart(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
+    @GetMapping("/minusOffer")
+    public String minusOffer() {
+        return "cartPage";
+    }
+
+    @PostMapping("/minusOffer")
+    public String minusOffer(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.minusOfferCount(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
+    }
+
+    @GetMapping("/plusOffer")
+    public String plusOffer() {
+        return "cartPage";
+    }
+
+    @PostMapping("/plusOffer")
+    public String plusOffer(long offerId, HttpSession httpSession, Model model) {
+        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
+        List<OfferComposite> cart = offerService.plusOfferCount(offerId, currentUser);
+        model.addAttribute("cartList", cart);
+        model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
+        return "cartPage";
     }
 }

@@ -15,8 +15,12 @@
 <h2>Step 2: Select your smartwatch in OnlineStoreCatalog</h2>
 <form action="/offer/addSmartwatch" method="post">
     <c:forEach items="${productList}" var="product">
-        <input type="radio" name="id" value="${product.id}"><p><b>Product name:</b> ${product.productName}; <b>Producer:</b> ${product.producer};
-        <b>Release date:</b> ${product.releaseDate}</p><br/>
+        <input id="radioId" type="radio" name="id" value="${product.id}">
+        <label for="radioId">
+            <b>Product name:</b> ${product.productName}; <b>Producer:</b> ${product.producer};
+            <b>Release date:</b> ${product.releaseDate}
+        </label>
+        <br>
     </c:forEach>
     <br>
     <button>Continue</button>

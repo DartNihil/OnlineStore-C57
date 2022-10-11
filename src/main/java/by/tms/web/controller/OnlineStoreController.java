@@ -1,8 +1,5 @@
 package by.tms.web.controller;
 
-import by.tms.dto.MapStoreProfileEditDtoToStore;
-import by.tms.dto.StoreProfileEditDto;
-import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.service.CustomerService;
 import by.tms.service.OfferService;
@@ -12,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -23,7 +19,7 @@ public class OnlineStoreController {
     private final OfferService offerService;
     private final MapStoreProfileEditDtoToStore mapStoreProfileEditDtoToStore;
 
-    public OnlineStoreController(StoreService storeService, CustomerService customerService, OfferService offerService, MapStoreProfileEditDtoToStore mapStoreProfileEditDtoToStore) {
+    public OnlineStoreController(StoreService storeService, CustomerService customerService) {
         this.storeService = storeService;
         this.customerService = customerService;
         this.offerService = offerService;
@@ -49,6 +45,7 @@ public class OnlineStoreController {
             return "storeRegistration";
         }
     }
+  
     @GetMapping("/currentStoreProfile")
     public String storeProfile(HttpSession session, Model model) {
         if (session.getAttribute("currentUser") instanceof Customer) {

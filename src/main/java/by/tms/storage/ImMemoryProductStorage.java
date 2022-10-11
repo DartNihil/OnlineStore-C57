@@ -32,12 +32,6 @@ public class ImMemoryProductStorage implements Storage<AbstractProduct, Long> {
     }
 
     @Override
-    public AbstractProduct delete(AbstractProduct entity) {
-        productList.remove(entity);
-        return entity;
-    }
-
-    @Override
     public List<AbstractProduct> getListOfEntity() {
         return productList;
     }
