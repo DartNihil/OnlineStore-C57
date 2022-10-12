@@ -10,12 +10,12 @@
 </head>
 <body>
 
-<h3>Store name : ${sessionScope.currentUser.storeName}</h3>
-<h3>Phone number : ${sessionScope.currentUser.storePhoneNumber}</h3>
-<h3>Store address : ${sessionScope.currentUser.storeAddress}</h3>
-<h3>Acceptable payment methods : ${sessionScope.currentUser.paymentMethods}</h3>
-<h3>Delivery methods : ${sessionScope.currentUser.deliveryMethods}</h3>
-<h3>Product categories you sell : ${sessionScope.currentUser.productCategories}</h3>
+<h3>Store name : ${sessionScope.currentStore.storeName}</h3>
+<h3>Phone number : ${sessionScope.currentStore.storePhoneNumber}</h3>
+<h3>Store address : ${sessionScope.currentStore.storeAddress}</h3>
+<h3>Acceptable payment methods : ${sessionScope.currentStore.paymentMethods}</h3>
+<h3>Delivery methods : ${sessionScope.currentStore.deliveryMethods}</h3>
+<h3>Product categories you sell : ${sessionScope.currentStore.productCategories}</h3>
 <h3><a href="/store/storeProfileEdit">Edit profile info</a></h3>
 <br>
 <a href="/user/logout">Logout</a>

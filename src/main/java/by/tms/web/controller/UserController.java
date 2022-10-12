@@ -43,15 +43,15 @@ public class UserController {
         Optional<Customer> customer = customerService.findCustomerByEmail(user.getEmail());
         if (store.isPresent()) {
             if (store.get().getPassword().equals(user.getPassword())) {
-                session.setAttribute("currentUser", store.get());
-                return "redirect:/store/currentStoreProfile";
+                session.setAttribute("currentStore", store.get());
+                return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");
                 return "login";
             }
         } else if (customer.isPresent()) {
             if (customer.get().getPassword().equals(user.getPassword())) {
-                session.setAttribute("currentUser", customer.get());
+                session.setAttribute("currentCustomer", customer.get());
                 return "redirect:/";
             } else {
                 model.addAttribute("message", "Wrong password");

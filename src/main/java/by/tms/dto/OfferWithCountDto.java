@@ -1,12 +1,15 @@
-package by.tms.composite;
+package by.tms.dto;
 
 import by.tms.entity.Offer;
 
-public class OfferComposite {
+public class OfferWithCountDto {
     private Offer offer;
     private int count;
 
-    public OfferComposite(Offer offer, int count) {
+    public OfferWithCountDto() {
+    }
+
+    public OfferWithCountDto(Offer offer, int count) {
         this.offer = offer;
         this.count = count;
     }

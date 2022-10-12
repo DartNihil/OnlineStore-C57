@@ -27,10 +27,10 @@
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-<c:if test="${currentUser.cart.size() == 0}">
+<c:if test="${currentCustomer.cart.size() == 0}">
     <h1>Your cart is empty!</h1>
 </c:if>
-<c:if test="${currentUser.cart.size() != 0}">
+<c:if test="${currentCustomer.cart.size() != 0}">
     <div class="container mt-5 border border-dark">
         <c:forEach items="${cartList}" var="offerInCart">
             <div class="row border border-dark">

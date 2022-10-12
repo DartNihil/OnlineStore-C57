@@ -49,34 +49,36 @@ public class OnlineStoreController {
             return "storeRegistration";
         }
     }
-  
+
     @GetMapping("/currentStoreProfile")
     public String storeProfile(HttpSession session, Model model) {
-        if (session.getAttribute("currentUser") instanceof Customer) {
-            return "redirect:/"; //should return "customer/customerProfile"
-        } else if (session.getAttribute("currentUser") instanceof Store) {
-            model.addAttribute("listOfOffers" , offerService.findOffersByStore((Store) session.getAttribute("currentUser")));
+        if (session.getAttribute("currentStore") != null) {
+            model.addAttribute("listOfOffers", offerService.findOffersByStore((Store) session.getAttribute("currentStore")));
             return "currentStoreProfile";
+        } else if (session.getAttribute("currentCustomer") != null) {
+            return "redirect:/"; //should return "customer/customerProfile"
+        } else {
+            return "redirect:/user/login";
         }
-        return "redirect:/user/login";
     }
 
-//    @PostMapping("/currentStoreProfile")
+    //    @PostMapping("/currentStoreProfile")
 //    public String storeProfile() {
 //        return "currentStoreProfile";
 //    }
     @GetMapping("/storeProfileEdit")
-    public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO){
+    public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO) {
         return "storeProfileEdit";
     }
+
     @PostMapping("/storeProfileEdit")
-    public String storeProfileEdit(@Valid @ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO , BindingResult bindingResult , HttpSession session){
-        if(bindingResult.hasErrors()){
+    public String storeProfileEdit(@Valid @ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO, BindingResult bindingResult, HttpSession session) {
+        if (bindingResult.hasErrors()) {
             return "storeProfileEdit";
         }
-        Store newStore = storeMapper.convertStoreProfileEditDtoToStore(storeProfileEditDTO ,
-                (Store) session.getAttribute("currentUser"));
-        session.setAttribute("currentUser" , newStore);
+        Store newStore = storeMapper.convertStoreProfileEditDtoToStore(storeProfileEditDTO,
+                (Store) session.getAttribute("currentStore"));
+        session.setAttribute("currentUser", newStore);
         return "currentStoreProfile";
     }
 }
