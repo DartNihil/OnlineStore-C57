@@ -63,10 +63,6 @@ public class OnlineCustomerController {
             return "customer/customerRegistration";
         }
     }
-//    @PostMapping("/personalData")
-//    public String CustomerPersonalData(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model){
-//        return "customer/customerPersonalData";
-//    }
     @PostMapping("/change/fullName")
     public String changeFullName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -93,7 +89,7 @@ public class OnlineCustomerController {
         if (bindingResult.hasErrors()) {
             return "customer/customerChangeOfPhoneNumber";
         } else {
-            customer.setTelephone(model.getAttribute("telephone"));      // telephone - String??????????????????????????
+            customer.setTelephone((int)model.getAttribute("telephone"));
             customerService.saveCustomer(customer);
             return "customer/customerPersonalData";
         }
