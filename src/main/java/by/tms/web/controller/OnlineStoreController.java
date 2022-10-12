@@ -1,14 +1,18 @@
 package by.tms.web.controller;
 
+import by.tms.dto.StoreProfileEditDto;
+import by.tms.entity.Customer;
 import by.tms.entity.Store;
 import by.tms.service.CustomerService;
 import by.tms.service.OfferService;
 import by.tms.service.StoreService;
+import by.tms.service.mapper.StoreMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -17,13 +21,13 @@ public class OnlineStoreController {
     private final StoreService storeService;
     private final CustomerService customerService;
     private final OfferService offerService;
-    private final MapStoreProfileEditDtoToStore mapStoreProfileEditDtoToStore;
+    private final StoreMapper storeMapper;
 
-    public OnlineStoreController(StoreService storeService, CustomerService customerService) {
+    public OnlineStoreController(StoreService storeService, CustomerService customerService, OfferService offerService, StoreMapper storeMapper) {
         this.storeService = storeService;
         this.customerService = customerService;
         this.offerService = offerService;
-        this.mapStoreProfileEditDtoToStore = mapStoreProfileEditDtoToStore;
+        this.storeMapper = storeMapper;
     }
 
     @GetMapping("/storeRegistration")
@@ -57,10 +61,10 @@ public class OnlineStoreController {
         return "redirect:/user/login";
     }
 
-    @PostMapping("/currentStoreProfile")
-    public String storeProfile() {
-        return "currentStoreProfile";
-    }
+//    @PostMapping("/currentStoreProfile")
+//    public String storeProfile() {
+//        return "currentStoreProfile";
+//    }
     @GetMapping("/storeProfileEdit")
     public String storeProfileEdit(@ModelAttribute("editedStore") StoreProfileEditDto storeProfileEditDTO){
         return "storeProfileEdit";
@@ -70,7 +74,7 @@ public class OnlineStoreController {
         if(bindingResult.hasErrors()){
             return "storeProfileEdit";
         }
-        Store newStore = mapStoreProfileEditDtoToStore.convertStoreProfileEditDtoToStore(storeProfileEditDTO ,
+        Store newStore = storeMapper.convertStoreProfileEditDtoToStore(storeProfileEditDTO ,
                 (Store) session.getAttribute("currentUser"));
         session.setAttribute("currentUser" , newStore);
         return "currentStoreProfile";

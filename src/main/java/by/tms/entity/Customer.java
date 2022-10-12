@@ -3,6 +3,7 @@ package by.tms.entity;
 import by.tms.composite.OfferComposite;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +22,21 @@ public class Customer extends User {
     @Size(message = "Lastname length must be 2 - 16", min = 2, max = 16)
     private String lastname;
 
+    @NotBlank(message = "Field must not be empty")
+    @Size(message = "Phone number has incorrect length!", min = 13, max = 13)
+    @Pattern(message = "Phone number is incorrect!", regexp = "\\+375[\\d]+")
+    private int phoneNumber;
     private final List<OfferComposite> cart = new ArrayList<>();
 
     public Customer() {
     }
 
-    public Customer(long id, String email, String password, String nickname, String firstname, String lastname) {
+    public Customer(long id, String email, String password, String nickname, String firstname, String lastname, int phoneNumber) {
         super(id, email, password);
         this.nickname = nickname;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getNickname() {
@@ -51,6 +57,14 @@ public class Customer extends User {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public void setLastname(String lastname) {
@@ -75,6 +89,7 @@ public class Customer extends User {
                 "nickname='" + nickname + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + this.getEmail() + '\'' +
                 ", password='" + this.getPassword() + '\'' +
                 ", id='" + this.getId() + '\'' +
