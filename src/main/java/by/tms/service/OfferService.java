@@ -28,9 +28,18 @@ public class OfferService {
         offer.setProduct(product);
         return offer;
     }
-  
+
     public Optional<Offer> findOfferById(long id) {
         return offerStorage.findById(id);
+    }
+
+    public List<Offer> findOffersByStore(Store store) {
+        return offerStorage.getListOfEntity().stream().filter(offer -> offer.getStore().equals(store)).toList();
+    }
+
+    public Offer deleteOffer(Offer offer) {
+        offerStorage.delete(offer);
+        return offer;
     }
 
     public List<OfferComposite> addOfferToCart(long offerId, Customer customer) {

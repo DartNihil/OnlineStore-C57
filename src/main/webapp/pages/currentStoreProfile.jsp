@@ -12,7 +12,7 @@
 
 <h3>Store name : ${sessionScope.currentUser.storeName}</h3>
 <h3>Phone number : ${sessionScope.currentUser.storePhoneNumber}</h3>
-<h3>Store adress : ${sessionScope.currentUser.storeAddress}</h3>
+<h3>Store address : ${sessionScope.currentUser.storeAddress}</h3>
 <h3>Acceptable payment methods : ${sessionScope.currentUser.paymentMethods}</h3>
 <h3>Delivery methods : ${sessionScope.currentUser.deliveryMethods}</h3>
 <h3>Product categories you sell : ${sessionScope.currentUser.productCategories}</h3>
