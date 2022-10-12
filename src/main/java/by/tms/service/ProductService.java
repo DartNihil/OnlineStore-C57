@@ -13,22 +13,25 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     @Qualifier("inMemoryProductStorage")
-    private Storage<Product, Long> productStorage;
+    private Storage<AbstractProduct, Long> productStorage;
 
-    public Product saveProduct(Product product) {
+    public AbstractProduct saveProduct(AbstractProduct product) {
         productStorage.save(product);
         return product;
     }
 
-    public Optional<Product> findProductByProducer(String producer) {
+    public Optional<AbstractProduct> findProductByProducer(String producer) {
         return productStorage.findEntity(producer);
     }
-    public Optional<Product> findProductById(Long id) {
+    public Optional<AbstractProduct> findProductById(Long id) {
         return productStorage.findById(id);
     }
-    public List<Product> getProductListForStoreOffer(String productCategory) {
-        fillProductListToTest();
-        List<Product> productList = null;
+    public List<AbstractProduct> getProductListForStoreOffer(String productCategory) {
+
+        if(productStorage.getListOfEntity().isEmpty()) {
+            fillProductListToTest();
+        }
+        List<AbstractProduct> productList = null;
         switch (productCategory) {
             case ("Smartphone"):
                 productList = getSmartphoneList();
@@ -56,36 +59,36 @@ public class ProductService {
 
     //method to test
     private void fillProductListToTest() {
-        saveProduct(new Smartphone("111", "Iphone1", "Apple", "2022", "123size", "black", "IOS", "12345", "nano"));
-        saveProduct(new Tablet("444", "Ipad1", "Apple", "2022", "444size", "black", "IOS", "12345", "98752"));
-        saveProduct(new Smartphone("222", "Iphone2", "Apple", "2021", "222size", "black", "IOS", "1234", "nano"));
-        saveProduct(new Notebook("555", "Macbook2", "Apple", "2022", "555size", "black", "IOS", "4321", "ssd"));
-        saveProduct(new Smartphone("333", "Iphone3", "Apple", "2020", "333size", "black", "IOS", "123", "nano"));
-        saveProduct(new ElectronicBook("666", "EBook1", "TextB", "2020", "666size", "black", "Android", "666", "txt"));
-        saveProduct(new Smartwatch("777", "SWatch1", "Huawei", "2022", "777size", "black", "Android", "777", "leather"));
+        saveProduct(new Smartphone("https://s.ek.ua/jpg_zoom1/1652336.jpg", "Iphone1", "Apple", "2022", "123size", "black", "IOS", "12345", "nano"));
+        saveProduct(new Tablet("https://shop.mts.by/upload/resize_cache/webp/iblock/ba3/600_900_1/Tab-A7-Lite-LTE-seryy.webp", "Ipad1", "Apple", "2022", "444size", "black", "IOS", "12345", "98752"));
+        saveProduct(new Smartphone("https://ichip.ru/blobimgs/uploads/2018/11/Xiaomi-Redmi-6.jpg", "Iphone2", "Apple", "2021", "222size", "black", "IOS", "1234", "nano"));
+        saveProduct(new Notebook("https://ixbt.online/live/images/original/20/28/05/2022/02/08/d391eccc07.jpg?w=877", "Macbook2", "Apple", "2022", "555size", "black", "IOS", "4321", "ssd"));
+        saveProduct(new Smartphone("https://5element.by/upload/medialibrary/64c/64c95e8e16da273ff37cd536c1b390b5.jpg", "Iphone3", "Apple", "2020", "333size", "black", "IOS", "123", "nano"));
+        saveProduct(new ElectronicBook("https://f.ua/statik/images/products/250/amazon/kindle_paperwhite_6_8gb_10_gen_2020_blue_877425764180.jpg", "EBook1", "TextB", "2020", "666size", "black", "Android", "666", "txt"));
+        saveProduct(new Smartwatch("https://m.sila.by/img/catalog2015/img10/tovar104161.jpg", "SWatch1", "Huawei", "2022", "777size", "black", "Android", "777", "leather"));
     }
 
-    private List<Product> getSmartphoneList() {
+    private List<AbstractProduct> getSmartphoneList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartphone).toList();
     }
 
-    private List<Product> getSmartwatchList() {
+    private List<AbstractProduct> getSmartwatchList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartwatch).toList();
     }
 
-    private List<Product> getElectronicBookList() {
+    private List<AbstractProduct> getElectronicBookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof ElectronicBook).toList();
     }
 
-    private List<Product> getTabletList() {
+    private List<AbstractProduct> getTabletList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Tablet).toList();
     }
 
-    private List<Product> getNotebookList() {
+    private List<AbstractProduct> getNotebookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Notebook).toList();
     }

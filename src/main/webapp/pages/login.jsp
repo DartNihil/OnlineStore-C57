@@ -11,12 +11,12 @@
 <body>
 <h2>Login into OnlinerStore</h2>
 <br>
-<s:form action="/login" method="post" modelAttribute="user">
+<s:form action="/user/login" method="post" modelAttribute="user">
     <s:input path="email" size="50" placeholder="Email"/>
     <br>
     <s:errors path="email" cssStyle="color: red"/>
     <br>
-    <s:input path="password" size="50" placeholder="Password"/>
+    <s:input path="password" size="50" type="password" placeholder="Password"/>
     <br>
     <s:errors path="password" cssStyle="color: red"/>
     <br>
@@ -25,7 +25,7 @@
 <p style="color: red">${message}</p>
 
 <h3>Not registered yet?</h3>
-<a href="store/storeRegistration">Register as a Store</a>
+<a href="/store/storeRegistration">Register as a Store</a>
 <a href="/customer/customerRegistration">Register as a Customer</a>
 </body>
 </html>

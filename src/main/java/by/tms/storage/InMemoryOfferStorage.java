@@ -20,6 +20,10 @@ public class InMemoryOfferStorage implements Storage<Offer, Long> {
         offerList.add(offer);
         return offer;
     }
+    public Offer delete(Offer offer){
+        offerList.remove(offer);
+        return offer;
+    }
 
     @Override
     public Optional<Offer> findById(Long id) {

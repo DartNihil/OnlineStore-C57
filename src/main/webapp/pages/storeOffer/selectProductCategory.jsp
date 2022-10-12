@@ -16,7 +16,9 @@
 <br>
 <form action="/offer/selectProductCategory" method="post">
     <c:forEach items="${sessionScope.currentUser.productCategories}" var="productCategory">
-        <input type="radio" name="productCategory" value="${productCategory}">${productCategory}<br/>
+        <input id="radioId" type="radio" name="productCategory" value="${productCategory}">
+        <label for="radioId">${productCategory}</label>
+        <br>
     </c:forEach>
     <br>
     <button>Continue</button>

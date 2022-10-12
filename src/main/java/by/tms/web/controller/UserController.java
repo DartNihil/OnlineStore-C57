@@ -5,33 +5,33 @@ import by.tms.entity.Store;
 import by.tms.entity.User;
 import by.tms.service.CustomerService;
 import by.tms.service.StoreService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-@RequestMapping("/")
-public class MainController {
-    private final StoreService storeService;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.Optional;
 
+@Controller
+@RequestMapping("/user")
+public class UserController {
+    private final StoreService storeService;
     private final CustomerService customerService;
 
-    @Autowired
-    public MainController(StoreService storeService, CustomerService customerService) {
+    public UserController(StoreService storeService, CustomerService customerService) {
         this.storeService = storeService;
         this.customerService = customerService;
-    }
-
-    @PostMapping
-    public String homepageSearch(String searchProduct, Model model) {
-        return "redirect: /search";
     }
 
     @GetMapping("/login")
     public String login(@ModelAttribute("user") User user) {
         return "login";
     }
-
 
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
@@ -62,10 +62,9 @@ public class MainController {
             return "login";
         }
     }
-
     @GetMapping("/logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/";
     }
 }

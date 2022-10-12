@@ -52,6 +52,10 @@
     <s:checkbox path="paymentMethods" value="CardPay"/>Card Pay<br/>
     <s:checkbox path="paymentMethods" value="CashPay"/>Cash Pay<br/>
     <br>
+    <p>Change possible delivery methods:</p>
+    <s:checkbox path="deliveryMethods" value="Self-pickup"/>Self-pickup<br/>
+    <s:checkbox path="deliveryMethods" value="Courier delivery"/>Courier delivery<br/>
+    <s:checkbox path="deliveryMethods" value="Mail delivery"/>Mail delivery<br/>
     <s:button>Submit</s:button>
 </s:form>
 </body>
