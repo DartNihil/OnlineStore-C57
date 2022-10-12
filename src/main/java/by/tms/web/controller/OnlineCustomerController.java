@@ -30,13 +30,29 @@ public class OnlineCustomerController {
 
     @GetMapping("/customerRegistration")
     public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
-        return "customerRegistration";
+        return "customer/customerRegistration";
+    }
+    @GetMapping("/personalData")
+    public String CustomerPersonalData(@ModelAttribute("currentCustomer") Customer customer) {
+        return "customer/customerPersonalData";
+    }
+    @GetMapping("/change/fullName")
+    public String customerChangeOfFullName(@ModelAttribute("currentCustomer") Customer customer) {
+        return "customer/customerChangeOfFullName";
+    }
+    @GetMapping("/change/nickName")
+    public String customerChangeOfNickName(@ModelAttribute("currentCustomer") Customer customer) {
+        return "customer/customerChangeOfNickName";
+    }
+    @GetMapping("/change/phoneNumber")
+    public String customerChangeOfPhoneNumber(@ModelAttribute("currentCustomer") Customer customer) {
+        return "customer/customerChangeOfPhoneNumber";
     }
 
     @PostMapping("/customerRegistration")
     public String registration(@Valid @ModelAttribute("newCustomer") Customer customer, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "customerRegistration";
+            return "customer/customerRegistration";
         }
         if (customerService.findCustomerByEmail(customer.getEmail()).isEmpty()
                 && storeService.findStoreByEmail(customer.getEmail()).isEmpty()) {
@@ -44,7 +60,42 @@ public class OnlineCustomerController {
             return "redirect:/";
         } else {
             model.addAttribute("message", "User already exists");
-            return "customerRegistration";
+            return "customer/customerRegistration";
+        }
+    }
+//    @PostMapping("/personalData")
+//    public String CustomerPersonalData(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model){
+//        return "customer/customerPersonalData";
+//    }
+    @PostMapping("/change/fullName")
+    public String changeFullName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "customer/customerChangeOfFullName";
+        } else {
+            customer.setFirstname((String) model.getAttribute("firstname"));
+            customer.setLastname((String) model.getAttribute("lastname"));
+            customerService.saveCustomer(customer);
+            return "customer/customerPersonalData";
+        }
+    }
+    @PostMapping("/change/nickName")
+    public String changeNickName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "customer/customerChangeOfNickName";
+        } else {
+            customer.setNickname((String) model.getAttribute("nickname"));
+            customerService.saveCustomer(customer);
+            return "customer/customerPersonalData";
+        }
+    }
+    @PostMapping("/change/phoneNumber")
+    public String changePhoneNumber(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "customer/customerChangeOfPhoneNumber";
+        } else {
+            customer.setTelephone(model.getAttribute("telephone"));      // telephone - String??????????????????????????
+            customerService.saveCustomer(customer);
+            return "customer/customerPersonalData";
         }
     }
 }
