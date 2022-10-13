@@ -44,7 +44,7 @@ public class UserController {
         if (store.isPresent()) {
             if (store.get().getPassword().equals(user.getPassword())) {
                 session.setAttribute("currentUser", store.get());
-                return "redirect:/";
+                return "redirect:/store/currentStoreProfile";
             } else {
                 model.addAttribute("message", "Wrong password");
                 return "login";

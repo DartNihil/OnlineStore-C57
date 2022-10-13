@@ -1,10 +1,11 @@
-package by.tms.dto;
+package by.tms.service.mapper;
 
+import by.tms.dto.StoreProfileEditDto;
 import by.tms.entity.Store;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MapStoreProfileEditDtoToStore {
+public class StoreMapper {
     public Store convertStoreProfileEditDtoToStore(StoreProfileEditDto storeProfileEditDTO, Store store) {
         store.setStoreName(storeProfileEditDTO.getStoreName());
         store.setStorePhoneNumber(storeProfileEditDTO.getStorePhoneNumber());

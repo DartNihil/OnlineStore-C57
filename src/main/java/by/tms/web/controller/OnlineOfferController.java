@@ -1,11 +1,11 @@
 package by.tms.web.controller;
 
 import by.tms.composite.OfferComposite;
-import by.tms.dto.ConvertDtoToObject;
 import by.tms.dto.OfferDto;
 import by.tms.entity.*;
 import by.tms.service.OfferService;
 import by.tms.service.ProductService;
+import by.tms.service.mapper.OfferMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -25,12 +24,12 @@ import java.util.Optional;
 public class OnlineOfferController {
     private final OfferService offerService;
     private final ProductService productService;
-    private final ConvertDtoToObject convertDTOToObject;
+    private final OfferMapper offerMapper;
 
-    public OnlineOfferController(OfferService offerService, ProductService productService, ConvertDtoToObject convertDTOToObject) {
+    public OnlineOfferController(OfferService offerService, ProductService productService, OfferMapper offerMapper) {
         this.offerService = offerService;
         this.productService = productService;
-        this.convertDTOToObject = convertDTOToObject;
+        this.offerMapper = offerMapper;
     }
 
     @GetMapping("/selectProductCategory")
@@ -141,10 +140,10 @@ public class OnlineOfferController {
             return "storeOffer/createOffer";
         }
         Offer offer = (Offer) httpSession.getAttribute("offer");
-        offer = convertDTOToObject.convertOfferDTOtoOffer(offerDTO, offer);
+        offer = offerMapper.convertOfferDTOtoOffer(offerDTO, offer);
         offerService.saveOffer(offer);
         httpSession.removeAttribute("offer");
-        return "redirect:/";
+        return "redirect:/store/currentStoreProfile";
     }
   
     @GetMapping("/addOfferToCart")
