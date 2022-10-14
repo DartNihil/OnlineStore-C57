@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: ilya6
-  Date: 06.10.2022
-  Time: 17:50
+  User: mac
+  Date: 13.10.2022
+  Time: 21:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,19 +12,17 @@
     <title>Customer_personal_data</title>
 </head>
 <body>
-<h2>Личные данные</h2>
+<h1>Личные данные</h1>
 <br>
 <s:form action="/customer/personalData" method="post" modelAttribute="currentCustomer">
-    <h1>Ник:     ${currentCustomer.nickname}</h1>
-    <a href="${pageContext.request.contextPath}/customer/change/nickName">Изменить</a>
+    <h3>Ник:     ${currentCustomer.nickname}</h3>
     <br>
-    <h1>ФИО:     ${currentCustomer.firstname} ${currentCustomer.lastname} </h1>
-    <a href="${pageContext.request.contextPath}/customer/change/fullName">Изменить</a>
+    <h3>ФИО:     ${currentCustomer.firstname} ${currentCustomer.lastname} </h3>
     <br>
-    <h1>Телефон: ${currentCustomer.telephone}</h1>
-    <a href="${pageContext.request.contextPath}/customer/change/phoneNumber">Изменить</a>
+    <h3>Телефон: ${currentCustomer.telephone}</h3>
     <br>
-    <h1>E-mail:  ${currentCustomer.email}</h1>
+    <h3>E-mail:  ${currentCustomer.email}</h3>
+    <s:button>Редактировать личные данные</s:button>
 </s:form>
 </body>
 </html>

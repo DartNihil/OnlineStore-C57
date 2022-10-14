@@ -36,17 +36,9 @@ public class OnlineCustomerController {
     public String CustomerPersonalData(@ModelAttribute("currentCustomer") Customer customer) {
         return "customer/customerPersonalData";
     }
-    @GetMapping("/change/fullName")
+    @GetMapping("/personalData/update")
     public String customerChangeOfFullName(@ModelAttribute("currentCustomer") Customer customer) {
-        return "customer/customerChangeOfFullName";
-    }
-    @GetMapping("/change/nickName")
-    public String customerChangeOfNickName(@ModelAttribute("currentCustomer") Customer customer) {
-        return "customer/customerChangeOfNickName";
-    }
-    @GetMapping("/change/phoneNumber")
-    public String customerChangeOfPhoneNumber(@ModelAttribute("currentCustomer") Customer customer) {
-        return "customer/customerChangeOfPhoneNumber";
+        return "customer/customerPersonalDataUpdate";
     }
 
     @PostMapping("/customerRegistration")
@@ -63,33 +55,19 @@ public class OnlineCustomerController {
             return "customer/customerRegistration";
         }
     }
-    @PostMapping("/change/fullName")
-    public String changeFullName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "customer/customerChangeOfFullName";
-        } else {
-            customer.setFirstname((String) model.getAttribute("firstname"));
-            customer.setLastname((String) model.getAttribute("lastname"));
-            customerService.saveCustomer(customer);
-            return "customer/customerPersonalData";
-        }
+    @PostMapping("/personalData")
+    public String changeFullName(@Valid @ModelAttribute("currentCustomer") Customer customer) {
+       return "customer/customerPersonalData";
     }
-    @PostMapping("/change/nickName")
+    @PostMapping("/personalData/update")
     public String changeNickName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "customer/customerChangeOfNickName";
+      if (bindingResult.hasErrors()) {
+            return "customer/customerPersonalDataUpdate";
         } else {
             customer.setNickname((String) model.getAttribute("nickname"));
-            customerService.saveCustomer(customer);
-            return "customer/customerPersonalData";
-        }
-    }
-    @PostMapping("/change/phoneNumber")
-    public String changePhoneNumber(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "customer/customerChangeOfPhoneNumber";
-        } else {
-            customer.setTelephone((int)model.getAttribute("telephone"));
+            customer.setFirstname((String) model.getAttribute("firstname"));
+            customer.setLastname((String) model.getAttribute("lastname"));
+            customer.setTelephone((int) model.getAttribute("telephone"));
             customerService.saveCustomer(customer);
             return "customer/customerPersonalData";
         }
