@@ -92,4 +92,8 @@ public class ProductService {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Notebook).toList();
     }
+
+    public  List<AbstractProduct> getAbstractProductList(){
+        return productStorage.getListOfEntity();
+    }
 }
