@@ -16,21 +16,19 @@
 <br>
 <s:form action="/customer/personalData/update" method="post" modelAttribute="currentCustomer">
     <h3>Ник:</h3>
-    <s:input path="nickname" size="30" value="${currentCustomer.nickname}" placeholder="Nickname"/>
-    <br>
+    <s:input path="nickname" size="30" value="${currentCustomer.nickname}" placeholder="Ник"/>
     <s:errors path="nickname"/>
     <br>
     <h3>ФИО:</h3>
     <h5>Имя</h5>
-    <s:input path="firstname" size="30" value="${currentCustomer.firstname}" placeholder="First name"/>
+    <s:input path="firstname" size="30" value="${currentCustomer.firstname}" placeholder="Имя"/>
     <s:errors path="firstname"/>
     <h5>Фамилия</h5>
-    <s:input path="lastname" size="30" value="${currentCustomer.lastname}" placeholder="Last name"/>
+    <s:input path="lastname" size="30" value="${currentCustomer.lastname}" placeholder="Фамилия"/>
     <s:errors path="lastname"/>
     <br>
     <h3>Телефон:</h3>
-    <s:input path="telephone" size="30" value="${currentCustomer.telephone}" placeholder="New telephone"/>
-    <br>
+    <s:input path="telephone" size="30" value="${currentCustomer.telephone}" placeholder="Телефон"/>
     <s:errors path="telephone"/>
     <br>
     <s:button>Сохранить</s:button>

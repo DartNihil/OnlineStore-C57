@@ -16,28 +16,28 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/customer")
-public class OnlineCustomerController {
+public class CustomerController {
 
     private final CustomerService customerService;
 
     private final StoreService storeService;
 
     @Autowired
-    public OnlineCustomerController(CustomerService customerService, StoreService storeService) {
+    public CustomerController(CustomerService customerService, StoreService storeService) {
         this.customerService = customerService;
         this.storeService = storeService;
     }
 
     @GetMapping("/customerRegistration")
-    public String CustomerRegistration(@ModelAttribute("newCustomer") Customer customer) {
+    public String customerRegistration(@ModelAttribute("newCustomer") Customer customer) {
         return "customer/customerRegistration";
     }
     @GetMapping("/personalData")
-    public String CustomerPersonalData(@ModelAttribute("currentCustomer") Customer customer) {
+    public String customerPersonalData(@ModelAttribute("currentCustomer") Customer customer) {
         return "customer/customerPersonalData";
     }
     @GetMapping("/personalData/update")
-    public String customerChangeOfFullName(@ModelAttribute("currentCustomer") Customer customer) {
+    public String customerPersonalDataUpdate(@ModelAttribute("currentCustomer") Customer customer) {
         return "customer/customerPersonalDataUpdate";
     }
 
@@ -56,20 +56,21 @@ public class OnlineCustomerController {
         }
     }
     @PostMapping("/personalData")
-    public String changeFullName(@Valid @ModelAttribute("currentCustomer") Customer customer) {
-       return "customer/customerPersonalData";
+    public String personalData(@ModelAttribute("currentCustomer") Customer customer) {
+       return "redirect:personalData/update";
     }
     @PostMapping("/personalData/update")
-    public String changeNickName(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
-      if (bindingResult.hasErrors()) {
-            return "customer/customerPersonalDataUpdate";
-        } else {
+    public String personalDataUpdate(@Valid @ModelAttribute("currentCustomer") Customer customer, BindingResult bindingResult, Model model) {
+      if (bindingResult.hasErrors())
+          return "customer/customerPersonalDataUpdate";
+           //return "redirect:/customer/personalData/update";
+      else {
             customer.setNickname((String) model.getAttribute("nickname"));
             customer.setFirstname((String) model.getAttribute("firstname"));
             customer.setLastname((String) model.getAttribute("lastname"));
-            customer.setTelephone((int) model.getAttribute("telephone"));
+            //customer.setTelephone((int) model.getAttribute("telephone"));
             customerService.saveCustomer(customer);
-            return "customer/customerPersonalData";
+            return "redirect:/customer/personalData";
         }
     }
 }

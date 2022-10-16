@@ -16,12 +16,10 @@
 <br>
 <s:form action="/customer/personalData" method="post" modelAttribute="currentCustomer">
     <h3>Ник:     ${currentCustomer.nickname}</h3>
-    <br>
     <h3>ФИО:     ${currentCustomer.firstname} ${currentCustomer.lastname} </h3>
-    <br>
     <h3>Телефон: ${currentCustomer.telephone}</h3>
-    <br>
     <h3>E-mail:  ${currentCustomer.email}</h3>
+    <br>
     <s:button>Редактировать личные данные</s:button>
 </s:form>
 </body>
