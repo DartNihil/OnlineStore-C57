@@ -9,7 +9,7 @@
     <title>Login</title>
 </head>
 <body>
-<h2>Login into OnlinerStore</h2>
+<h2>Login into OnlineStore</h2>
 <br>
 <s:form action="/user/login" method="post" modelAttribute="user">
     <s:input path="email" size="50" placeholder="Email"/>

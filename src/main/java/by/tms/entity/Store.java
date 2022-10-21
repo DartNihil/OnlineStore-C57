@@ -1,6 +1,7 @@
 package by.tms.entity;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends User {
@@ -26,6 +27,7 @@ public class Store extends User {
     @NotNull
     @Size(min = 1, max = 3)
     private List<String> deliveryMethods;
+    private final List<PurchaseAlert> alerts = new ArrayList<>();
 
     public Store() {
     }
@@ -95,6 +97,10 @@ public class Store extends User {
 
     public void setDeliveryMethods(List<String> deliveryMethods) {
         this.deliveryMethods = deliveryMethods;
+    }
+
+    public List<PurchaseAlert> getAlerts() {
+        return alerts;
     }
 
     @Override

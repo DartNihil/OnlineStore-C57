@@ -45,7 +45,7 @@
     <s:checkbox path="deliveryMethods" value="Mail delivery"/>Mail delivery<br/>
     <s:button>Submit</s:button>
 </s:form>
-<a href="/store/storeProfile">Back to profile</a>
+<a href="/store/currentStoreProfile">Back to profile</a>
 
 </body>
 </html>

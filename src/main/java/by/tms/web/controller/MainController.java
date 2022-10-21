@@ -35,7 +35,4 @@ public class MainController {
     public String login(@ModelAttribute("user") User user) {
         return "login";
     }
-
-
-
 }
