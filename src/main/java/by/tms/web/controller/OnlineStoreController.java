@@ -76,9 +76,11 @@ public class OnlineStoreController {
         if (bindingResult.hasErrors()) {
             return "storeProfileEdit";
         }
+
         Store newStore = storeMapper.convertStoreProfileEditDtoToStore(storeProfileEditDTO,
                 (Store) session.getAttribute("currentStore"));
         session.setAttribute("currentUser", newStore);
+
         return "currentStoreProfile";
     }
 }

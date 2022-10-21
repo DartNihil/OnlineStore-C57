@@ -20,7 +20,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class OnlineCustomerController {
-
     private final CustomerService customerService;
     private final StoreService storeService;
     private final OfferService offerService;
