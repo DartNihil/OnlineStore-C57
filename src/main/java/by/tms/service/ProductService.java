@@ -68,27 +68,27 @@ public class ProductService {
         saveProduct(new Smartwatch("https://m.sila.by/img/catalog2015/img10/tovar104161.jpg", "SWatch1", "Huawei", "2022", "777size", "black", "Android", "777", "leather"));
     }
 
-    public List<AbstractProduct> getSmartphoneList() {
+    private List<AbstractProduct> getSmartphoneList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartphone).toList();
     }
 
-    public List<AbstractProduct> getSmartwatchList() {
+    private List<AbstractProduct> getSmartwatchList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Smartwatch).toList();
     }
 
-    public List<AbstractProduct> getElectronicBookList() {
+    private List<AbstractProduct> getElectronicBookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof ElectronicBook).toList();
     }
 
-    public List<AbstractProduct> getTabletList() {
+    private List<AbstractProduct> getTabletList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Tablet).toList();
     }
 
-    public List<AbstractProduct> getNotebookList() {
+    private List<AbstractProduct> getNotebookList() {
         return productStorage.getListOfEntity().stream().filter(product ->
                 product instanceof Notebook).toList();
     }

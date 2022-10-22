@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: HomeUser
   Date: 04.10.2022
-  Time: 13:30
+  Time: 13:33
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,11 +10,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>CatalogTabletPC</title>
+    <title>CatalogNotebook</title>
 </head>
 <body>
-<form action="/catalog/tabletpc">
-    <button type="button" style="border: white; background: white; padding: 5px; width: 250px;" >
+<form action="/catalog/notebook">
+    <button type="button" style="border: white; background: white; padding: 5px; width: 250px;">
         <h1 style="font-size: 40px;">Onliner</h1>
     </button>
     <button style="float: right; padding: 10px; width: 150px; border: white; background: white;">
@@ -22,18 +22,24 @@
     </button>
 </form>
 <div>
-    <h1 style="font-size: 40px; padding: 10px">Планшеты</h1>
+    <h1 style="font-size: 40px; padding: 10px">Ноутбуки</h1>
 </div>
 <div>
     <div style=" float: left; width: 250px; height: 400px; background-color: lightgrey; padding: 12px;">
 
     </div>
     <div style=" float: right; width: 1000px; height: 400px;  padding: 12px;">
-        <c:forEach var="tablet" items="${tablet}">
-            <p><c:out value="${tablet}" /></p>
+        <c:forEach var="notebook" items="${notebooks}">
+            <form action="/" method="post" >
+
+                <button name="id"><img src="${notebook.product.srcPicture}" class="block"
+                                       height="60" width="60" alt="...">
+                        ${notebook.product.productName}, ${notebook.product.operatingSystem},
+                        ${notebook.product.producer}
+                </button>
+            </form>
         </c:forEach>
     </div>
 </div>
-
 </body>
 </html>

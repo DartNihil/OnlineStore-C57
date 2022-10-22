@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: HomeUser
   Date: 04.10.2022
-  Time: 13:34
+  Time: 13:30
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,10 +10,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>CatalogSmartwatch</title>
+    <title>CatalogTabletPC</title>
 </head>
 <body>
-<form action="/catalog/smartwatch">
+<form action="/catalog/tabletpc">
     <button type="button" style="border: white; background: white; padding: 5px; width: 250px;" >
         <h1 style="font-size: 40px;">Onliner</h1>
     </button>
@@ -22,15 +22,22 @@
     </button>
 </form>
 <div>
-    <h1 style="font-size: 40px; padding: 10px">Умные часы</h1>
+    <h1 style="font-size: 40px; padding: 10px">Планшеты</h1>
 </div>
 <div>
     <div style=" float: left; width: 250px; height: 400px; background-color: lightgrey; padding: 12px;">
 
     </div>
     <div style=" float: right; width: 1000px; height: 400px;  padding: 12px;">
-        <c:forEach var="smartwatch" items="${smartwatch}">
-            <p><c:out value="${smartwatch}" /></p>
+        <c:forEach var="tablet" items="${tablets}">
+            <form action="/" method="post" >
+
+                <button name="id"><img src="${tablet.product.srcPicture}" class="block"
+                                       height="60" width="60" alt="...">
+                        ${tablet.product.productName}, ${tablet.product.operatingSystem},
+                        ${tablet.product.producer}
+                </button>
+            </form>
         </c:forEach>
     </div>
 </div>

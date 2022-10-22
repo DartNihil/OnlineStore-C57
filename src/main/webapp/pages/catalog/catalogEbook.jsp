@@ -31,8 +31,15 @@
 
     </div>
     <div style=" float: right; width: 1000px; height: 400px;  padding: 12px;">
-        <c:forEach var="ebook" items="${ebook}">
-            <p><c:out value="${ebook}" /></p>
+        <c:forEach var="ebook" items="${ebooks}">
+            <form action="/" method="post" >
+
+                <button name="id"><img src="${ebook.product.srcPicture}" class="block"
+                                       height="60" width="60" alt="...">
+                        ${ebook.product.productName}, ${ebook.product.operatingSystem},
+                        ${ebook.product.producer}
+                </button>
+            </form>
         </c:forEach>
     </div>
 </div>

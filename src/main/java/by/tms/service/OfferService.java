@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.stream.Collectors.toList;
+
 @Component
 public class OfferService {
     @Autowired
@@ -111,4 +113,32 @@ public class OfferService {
         }
         return cart;
     }
+
+    public List<Offer> getSmartphoneList() {
+        return offerStorage.getListOfEntity().stream().filter(product ->
+                product.getProduct() instanceof Smartphone).toList();
+    }
+
+    public List<Offer> getSmartwatchList() {
+        return offerStorage.getListOfEntity().stream().filter(product ->
+                product.getProduct() instanceof Smartwatch).toList();
+    }
+
+    public List<Offer> getElectronicBookList() {
+        return offerStorage.getListOfEntity().stream().filter(product ->
+                product.getProduct() instanceof ElectronicBook).toList();
+    }
+
+    public List<Offer> getTabletList() {
+        return offerStorage.getListOfEntity().stream().filter(product ->
+                product.getProduct() instanceof Tablet).toList();
+    }
+
+    public List<Offer> getNotebookList() {
+        return offerStorage.getListOfEntity().stream().filter(product ->
+                product.getProduct() instanceof Notebook).toList();
+    }
+
+
+
 }

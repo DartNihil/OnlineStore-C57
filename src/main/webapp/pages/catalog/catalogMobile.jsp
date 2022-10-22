@@ -23,13 +23,21 @@
 </form>
 <div>
     <h1 style="font-size: 40px; padding: 10px">Смартфоны</h1>
+</div>
     <div>
         <div style=" float: left; width: 250px; height: 400px; background-color: lightgrey; padding: 12px;">
 
         </div>
         <div style=" float: right; width: 1000px; height: 400px;  padding: 12px;">
-            <c:forEach var="phone" items="${phone}">
-                <p><c:out value="${phone}"/></p>
+            <c:forEach var="phone" items="${phones}">
+                <form action="/" method="post" >
+
+                    <button name="id"><img src="${phone.product.srcPicture}" class="block"
+                                           height="60" width="60" alt="...">
+                        ${phone.product.productName}, ${phone.product.operatingSystem},
+                                    ${phone.product.producer}
+                    </button>
+                </form>
             </c:forEach>
         </div>
     </div>

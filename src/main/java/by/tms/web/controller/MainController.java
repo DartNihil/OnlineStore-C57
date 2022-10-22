@@ -2,7 +2,7 @@ package by.tms.web.controller;
 
 import by.tms.entity.User;
 import by.tms.service.CustomerService;
-import by.tms.service.ProductService;
+import by.tms.service.OfferService;
 import by.tms.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,14 @@ public class MainController {
 
     private final CustomerService customerService;
 
-    private final ProductService productService;
+    private final OfferService offerService;
 
 
     @Autowired
-    public MainController(StoreService storeService, CustomerService customerService, ProductService productService) {
+    public MainController(StoreService storeService, CustomerService customerService, OfferService offerService) {
         this.storeService = storeService;
         this.customerService = customerService;
-        this.productService = productService;
+        this.offerService = offerService;
     }
 
     @PostMapping
@@ -41,32 +41,32 @@ public class MainController {
 
     @GetMapping("/catalog/mobile")
     public String mobile(Model model){
-        model.addAttribute("phone", productService.getSmartphoneList());
-        return "catalogMobile";
+        model.addAttribute("phones", offerService.getSmartphoneList());
+        return "catalog/catalogMobile";
     }
 
     @GetMapping("/catalog/tablet")
     public String tabletPC(Model model){
-        model.addAttribute("tablet", productService.getTabletList());
-        return "catalogTabletpc";
+        model.addAttribute("tablets", offerService.getTabletList());
+        return "catalog/catalogTabletpc";
     }
 
     @GetMapping("/catalog/ebook")
     public String ebook(Model model){
-        model.addAttribute("ebook", productService.getElectronicBookList());
-        ;            return "catalogEbook";
+        model.addAttribute("ebooks", offerService.getElectronicBookList());
+        ;            return "catalog/catalogEbook";
     }
 
     @GetMapping("/catalog/smartwatch")
     public String smartwatch(Model model){
-        model.addAttribute("smartwatch", productService.getSmartwatchList());
-        return "catalogSmatwatch";
+        model.addAttribute("smartwatchs", offerService.getSmartwatchList());
+        return "catalog/catalogSmatwatch";
     }
 
     @GetMapping("/catalog/notebook")
     public String notebook(Model model){
-        model.addAttribute("notebook", productService.getNotebookList());
-        return "catalogNotebook";
+        model.addAttribute("notebooks", offerService.getNotebookList());
+        return "catalog/catalogNotebook";
     }
 
 }
