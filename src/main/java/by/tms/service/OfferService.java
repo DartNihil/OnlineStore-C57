@@ -1,6 +1,6 @@
 package by.tms.service;
 
-import by.tms.composite.OfferComposite;
+import by.tms.dto.OfferWithCountDto;
 import by.tms.entity.*;
 import by.tms.storage.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +44,9 @@ public class OfferService {
         return offer;
     }
 
-    public List<OfferComposite> addOfferToCart(long offerId, Customer customer) {
+    public List<OfferWithCountDto> addOfferToCart(long offerId, Customer customer) {
 
-        List<OfferComposite> cart = customer.getCart();
+        List<OfferWithCountDto> cart = customer.getCart();
         boolean isOfferInCart = false;
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getOffer().getId() == offerId) {
@@ -62,13 +62,13 @@ public class OfferService {
             if (offerInBase.isPresent()) {
                 offer = offerInBase.get();
             }
-            OfferComposite offerComposite = new OfferComposite(offer, 1);
+            OfferWithCountDto offerComposite = new OfferWithCountDto(offer, 1);
             cart.add(offerComposite);
         }
         return cart;
     }
 
-    public BigDecimal findTotalPriceOffersInCart(List<OfferComposite> cart) {
+    public BigDecimal findTotalPriceOffersInCart(List<OfferWithCountDto> cart) {
         BigDecimal totalPrice = new BigDecimal(0);
         for (int i = 0; i < cart.size(); i++) {
             BigDecimal offerCompositePrice = cart.get(i).getOffer().getPrice().multiply(new BigDecimal(cart.get(i).getCount()));
@@ -77,8 +77,14 @@ public class OfferService {
         return totalPrice;
     }
 
-    public List<OfferComposite> deleteOfferFromCart(long offerId, Customer customer) {
-        List<OfferComposite> cart = customer.getCart();
+    public BigDecimal findTotalPriceOfOfferToBuy(OfferWithCountDto offerWithCountInCartDto) {
+        BigDecimal totalPrice = new BigDecimal(0);
+        totalPrice = offerWithCountInCartDto.getOffer().getPrice().multiply(new BigDecimal(offerWithCountInCartDto.getCount()));
+        return totalPrice;
+    }
+
+    public List<OfferWithCountDto> deleteOfferFromCart(long offerId, Customer customer) {
+        List<OfferWithCountDto> cart = customer.getCart();
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getOffer().getId() == offerId) {
                 cart.remove(i);
@@ -88,8 +94,8 @@ public class OfferService {
         return cart;
     }
 
-    public List<OfferComposite> minusOfferCount(long offerId, Customer customer) {
-        List<OfferComposite> cart = customer.getCart();
+    public List<OfferWithCountDto> minusOfferCount(long offerId, Customer customer) {
+        List<OfferWithCountDto> cart = customer.getCart();
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getOffer().getId() == offerId) {
                 int count = cart.get(i).getCount();
@@ -102,8 +108,8 @@ public class OfferService {
         return cart;
     }
 
-    public List<OfferComposite> plusOfferCount(long offerId, Customer customer) {
-        List<OfferComposite> cart = customer.getCart();
+    public List<OfferWithCountDto> plusOfferCount(long offerId, Customer customer) {
+        List<OfferWithCountDto> cart = customer.getCart();
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i).getOffer().getId() == offerId) {
                 int count = cart.get(i).getCount();
@@ -139,6 +145,25 @@ public class OfferService {
                 product.getProduct() instanceof Notebook).toList();
     }
 
+    public OfferWithCountDto findOfferWithCountInCart(long offerId, Customer customer) {
+        OfferWithCountDto offerWithCountInCart = new OfferWithCountDto();
+        List<OfferWithCountDto> cart = customer.getCart();
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.get(i).getOffer().getId() == offerId) {
+                offerWithCountInCart = cart.get(i);
+                break;
+            }
+        }
+        return offerWithCountInCart;
+    }
 
-
+    public Store addPurchaseAlert(PurchaseAlert purchaseAlert) {
+        Store store = purchaseAlert.getOffer().getStore();
+        store.getAlerts().add(purchaseAlert);
+        return store;
+    }
+    public Customer addCompletedOrderToList(Customer customer, OfferWithCountDto offerWithCountDto) {
+        customer.getCompletedOrder().add(offerWithCountDto);
+        return customer;
+    }
 }

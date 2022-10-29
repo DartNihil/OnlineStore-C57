@@ -68,5 +68,3 @@ public class MainController {
         model.addAttribute("notebooks", offerService.getNotebookList());
         return "catalog/catalogNotebook";
     }
-
-}

@@ -1,6 +1,6 @@
 package by.tms.entity;
 
-import by.tms.composite.OfferComposite;
+import by.tms.dto.OfferWithCountDto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -22,11 +22,16 @@ public class Customer extends User {
     @Size(message = "Lastname length must be 2 - 16", min = 2, max = 16)
     private String lastname;
 
+
+    private final List<OfferWithCountDto> cart = new ArrayList<>();
+    private final List<OfferWithCountDto> completedOrder = new ArrayList<>();
+
     @NotBlank(message = "Field must not be empty")
     @Size(message = "Phone number has incorrect length!", min = 13, max = 13)
     @Pattern(message = "Phone number is incorrect!", regexp = "\\+375[\\d]+")
     private int phoneNumber;
     private final List<OfferComposite> cart = new ArrayList<>();
+
 
     public Customer() {
     }
@@ -71,8 +76,12 @@ public class Customer extends User {
         this.lastname = lastname;
     }
 
-    public List<OfferComposite> getCart() {
+    public List<OfferWithCountDto> getCart() {
         return cart;
+    }
+
+    public List<OfferWithCountDto> getCompletedOrder() {
+        return completedOrder;
     }
 
     public int getCountOffersInCart() {

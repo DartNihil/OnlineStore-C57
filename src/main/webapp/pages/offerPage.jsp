@@ -17,20 +17,6 @@
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-<br>
-
-<%--Test button of cart  --%>
-
-<form action="/customer/cart" method="post">
-    <c:if test="${currentUser.cart.size() == 0}">
-        <button class="btn btn-secondary">My cart</button>
-    </c:if>
-    <c:if test="${currentUser.cart.size() != 0}">
-        <button class="btn btn-danger">My cart (${currentUser.getCountOffersInCart()})</button>
-    </c:if>
-</form>
-
-<%--End test button of cart  --%>
 
 <%--Test part--%>
 

@@ -1,6 +1,6 @@
 package by.tms.web.controller;
 
-import by.tms.composite.OfferComposite;
+import by.tms.dto.OfferWithCountDto;
 import by.tms.entity.Customer;
 import by.tms.service.CustomerService;
 import by.tms.service.OfferService;
@@ -56,8 +56,8 @@ public class OnlineCustomerController {
 
     @PostMapping("/cart")
     public String cart(Model model, HttpSession httpSession) {
-        Customer currentUser = (Customer) httpSession.getAttribute("currentUser");
-        List<OfferComposite> cart = currentUser.getCart();
+        Customer currentUser = (Customer) httpSession.getAttribute("currentCustomer");
+        List<OfferWithCountDto> cart = currentUser.getCart();
         model.addAttribute("cartList", cart);
         model.addAttribute("totalPrice", offerService.findTotalPriceOffersInCart(cart));
         return "cartPage";
